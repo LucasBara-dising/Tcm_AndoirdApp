@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ListaServ">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/myRectangleView2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/ImgBtnAddServ"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_file" />
+
+        <EditText
+            android:id="@+id/TxtEdtPesquisa"
+            android:layout_width="300dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:autofillHints="@string/TxtProcurar"
+            android:background="@drawable/borda_bar_de_pesquisa"
+            android:backgroundTint="#F1F1F1"
+            android:drawableStart="?android:attr/actionModeWebSearchDrawable"
+            android:drawablePadding="5dp"
+            android:hint="@string/TxtProcurar"
+            android:inputType="textPersonName"
+            android:maxWidth="300dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp"
+            android:text=""
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/myRectangleView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/txtView46"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/TxtServ"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/listviewServ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="225dp" />
+
+</RelativeLayout>
