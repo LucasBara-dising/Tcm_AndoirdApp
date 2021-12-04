@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/salvaServ"
+        android:title="@string/txtsalvar"/>
+
+    <item android:id="@+id/AtualizaServ"
+        android:title="@string/txtUpdateServ" />
+
+    <item android:id="@+id/deleteServ"
+        android:title="@string/txtDeleteServ" />
+</menu>

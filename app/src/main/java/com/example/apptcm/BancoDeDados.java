@@ -17,7 +17,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     //Variaveis de nome de tabela e campos
     //servicos
-    public static final String Tabela_servico = "TbServicos";
+    public static final String Tabela_servico = "Servicos";
     public static final String Coluna_CodServ = "Codserv";
     public static final String Coluna_NomeEmpresa = "nomeEmpresa";
     public static final String Coluna_TituloServ = "tituloServ";
@@ -161,7 +161,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
 
 
-    //=================================Funcionario
+    //=================================Funcionario=====================
     //Insert serv
     void addFunc(Funcionario funcionario){
         SQLiteDatabase db=this.getWritableDatabase();
@@ -187,10 +187,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
 
-        Funcionario funcionario1= new Funcionario(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
+        return new Funcionario(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
                 cursor.getString(3),cursor.getString(4));
-
-        return funcionario1;
     }
 
     //update
@@ -207,6 +205,4 @@ public class BancoDeDados extends SQLiteOpenHelper {
         db.update(Tabela_Funcionario, values, Coluna_idFunc + "= ?",
                 new String[]{String.valueOf(funcionario.getIdFunc()) });
     }
-
-
 }

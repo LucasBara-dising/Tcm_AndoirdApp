@@ -10,19 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddServ"
+            android:exported="true" />
+        <activity
+            android:name=".AtualizaServico"
+            android:exported="true" />
+        <activity
+            android:name=".AtualizarFunc"
+            android:exported="true" />
+        <activity
             android:name=".AddFunc"
             android:exported="true" />
         <activity
-            android:name=".ContaFunc"
+            android:name=".ListaServ"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".AddServ"
+            android:name=".ContaFunc"
             android:exported="true" />
         <activity
-            android:name=".ListaServ"
+            android:name=".DetalhesServ"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

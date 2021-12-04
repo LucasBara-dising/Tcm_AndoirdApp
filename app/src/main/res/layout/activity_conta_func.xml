@@ -31,8 +31,7 @@
                     style="@style/TxtPadraoConta"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/txtViewEmailFunc"
@@ -94,7 +93,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="45dp"
                 android:background="@drawable/borda_aredondada"
-                app:backgroundTint="@color/AzulClaro"
+                app:backgroundTint="@color/material_on_primary_disabled"
                 android:padding="10dp"
                 android:text="@string/TxtLogout"
                 android:textAllCaps="false"
@@ -107,7 +106,7 @@
         android:id="@+id/myRectangleView5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/design_default_color_primary"
+        android:background="@color/Azul"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -115,13 +114,13 @@
 
 
     <ImageButton
-        android:id="@+id/imgBtnVoltaHome4"
+        android:id="@+id/imgBtnVoltaHome"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:background="@color/AzulClaro"
+        android:background="@color/Azul"
         android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fecha" />
 
     <TextView

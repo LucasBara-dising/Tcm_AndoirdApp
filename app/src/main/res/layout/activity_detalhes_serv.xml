@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalhesServ">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/Azul"
+        app:popupTheme="@style/MyToolbarStyle"
+        tools:ignore="MissingConstraints" />
+
+
+    <View
+        android:id="@+id/viewNivelConclusão"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/Azul"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/descImgSeta"/>
+
+    <ImageButton
+        android:id="@+id/imgBtnVoltaHome1"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@color/Azul"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/seta_voltar" />
+
+    <TextView
+        android:id="@+id/txtViewTitulo"
+        style="TxtInfoHotel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnVoltaHome1" />
+
+    <TextView
+        android:id="@+id/txtViewEmpresa"
+        style="@style/StyleInfoServ"
+        android:textColor="@color/Azul"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewTitulo" />
+
+    <ImageButton
+        android:id="@+id/btnImageprazo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/white"
+        android:contentDescription="@string/descImgRelogio"
+        android:layout_margin="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewEmpresa"
+        app:srcCompat="@drawable/prazo_img" />
+
+    <TextView
+        android:id="@+id/txtViewPrazo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toEndOf="@+id/btnImageprazo"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewEmpresa" />
+
+    <TextView
+        android:id="@+id/txtViewArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:layout_margin="50dp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/btnImageprazo"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/StyleInfoServ"
+        android:layout_margin="30dp"
+        android:text="@string/TxtDescEvento"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewArea" />
+
+    <TextView
+        android:id="@+id/txtViewDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="30dp"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

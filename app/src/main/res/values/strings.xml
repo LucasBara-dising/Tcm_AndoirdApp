@@ -16,6 +16,13 @@
     <string name="txtAddFunc">Adicionar Funcionario</string>
     <string name="TxtLogout">Sair</string>
 
+    <string name="TxtAddFunc">Adiconar Funcionario</string>
+    <string name="TxtEmailFunc">Email</string>
+    <string name="TxtNomeFunc">Nome</string>
+    <string name="txtSenhaFunc">Senha</string>
+    <string name="TxtCargoFunc">Cargo</string>
+
+
     <!--    Tela add Serv-->
     <string name="TxtAddServ">Adiconar Serviço</string>
     <string name="TxtNomeEmpresa">Nome da empresa</string>
@@ -25,6 +32,25 @@
     <string name="TxtplatServ">Plataforma do serviço</string>
     <string name="TxtSalvar">Salvar</string>
 
+    <!--    Tela Update func-->
+    <string name="TxtAtualizaFunc">Atualizar Funcionario</string>
+
+    <!--    Tela detalhes serv-->
+    <string name="txtsalvar">salvar</string>
+    <string name="txtUpdateServ">Atualizar</string>
+    <string name="txtDeleteServ">Excluir</string>
+    <string name="TxtDescEvento">Descrição</string>
+
+
     <!-- desc img-->
     <string name="descImgSeta">sair para home</string>
+    <string name="descImgRelogio">Img De relogio</string>
+
+    <string-array name="ItensDropdown">
+        <item>Terminado</item>
+        <item>não iniciado</item>
+        <item>Em Andamento</item>
+        <item>Prazo Proximo</item>
+        <item>Atrasado</item>
+    </string-array>
 </resources>

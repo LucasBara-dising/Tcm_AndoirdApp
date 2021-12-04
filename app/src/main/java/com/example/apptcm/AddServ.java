@@ -19,6 +19,8 @@ public class AddServ extends AppCompatActivity {
 
     BancoDeDados db=new BancoDeDados(this);
 
+    //===================== TERMIANADO===============
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
