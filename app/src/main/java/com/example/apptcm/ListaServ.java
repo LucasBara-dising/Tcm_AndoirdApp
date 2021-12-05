@@ -31,6 +31,9 @@ public class ListaServ extends AppCompatActivity {
         setContentView(R.layout.activity_lista_serv);
 
 
+        ListaServico();
+
+
         imgBtnVoltaHome1= (ImageButton)findViewById(R.id.imgBtnVoltaHome1);
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +50,6 @@ public class ListaServ extends AppCompatActivity {
             }
         });
 
-        //ListaServico();
 
         listviewServ=(ListView)findViewById(R.id.listviewServ);
         listviewServ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,11 +58,15 @@ public class ListaServ extends AppCompatActivity {
                 String conteudo=(String) listviewServ.getItemAtPosition(position);
 
                 //vai pegar oq estiver entes do "-" na varaivel conteudo
-                 //codigo=conteudo.substring(0,conteudo.indexOf("-"));
-                int codigo=1;
-                Servico servico= db.selecionarServico(Integer.parseInt(String.valueOf(codigo)));
+                String cod=conteudo.substring(0,conteudo.indexOf("-"));
 
-                Toast.makeText(ListaServ.this, "Id: "+codigo, Toast.LENGTH_LONG).show();
+                Servico servico= db.selecionarServico(Integer.parseInt(String.valueOf(cod)));
+
+                int codServ= Integer.parseInt(String.valueOf(cod));
+
+                Intent intent = new Intent(ListaServ.this, DetalhesServ.class);
+                intent.putExtra("codServ", codServ);
+                startActivity(intent);
 
             }
         });
@@ -72,11 +78,12 @@ public class ListaServ extends AppCompatActivity {
 
         arrayList= new ArrayList<String>();
         adpater=new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+        listviewServ=(ListView)findViewById(R.id.listviewServ);
         listviewServ.setAdapter(adpater);
 
         for(Servico c:servicos){
-            arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n\n"+
-                    "Titulo: "+c.getTituloServ()+"\n\n"+ "Prazo: "+c.getPrazo());
+            arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n"+
+                    "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
             adpater.notifyDataSetChanged();
         }
     }
@@ -84,6 +91,7 @@ public class ListaServ extends AppCompatActivity {
     public void TelaAddServ(){
         Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
         startActivity(AddServ);
+        finish();
     }
 
     public void TelaHome(){

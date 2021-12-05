@@ -7,7 +7,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">50dp</item>
         <item name="android:layout_marginEnd">50dp</item>
-        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginTop">30dp</item>
     </style>
 
     <style name="TxtPadraoConta">
@@ -30,8 +30,8 @@
     <style name="StyleInfoServ">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">50dp</item>
-        <item name="android:layout_marginTop">36dp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

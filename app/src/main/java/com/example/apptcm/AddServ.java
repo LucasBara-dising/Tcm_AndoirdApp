@@ -71,6 +71,7 @@ public class AddServ extends AppCompatActivity {
     public void TelaListaServ(){
         Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
         startActivity(ListServ);
+        finish();
     }
 
 }

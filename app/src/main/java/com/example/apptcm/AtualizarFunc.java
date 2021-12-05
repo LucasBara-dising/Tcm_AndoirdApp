@@ -19,7 +19,6 @@ public class AtualizarFunc extends AppCompatActivity {
 
     BancoDeDados db=new BancoDeDados(this);
 
-    //===================== TESTAR ===============
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +30,11 @@ public class AtualizarFunc extends AppCompatActivity {
         editSenhaFunc=(EditText)findViewById(R.id.editSenhaFunc);
         editCargoFunc=(EditText)findViewById(R.id.editCargoFunc);
 
-        int CodigoFun=1;
-        Funcionario funcionario= db.selecionarFunc(CodigoFun);
+        //recebe o codigo da tela conta
+        Intent intent = getIntent();
+        int codFunc = intent.getIntExtra("codFunc",0);
+
+        Funcionario funcionario= db.selecionarFunc(codFunc);
 
         editEmailFunc.setText(funcionario.getEmailFunc());
         editNomeFunc.setText(funcionario.getNomeFunc());
@@ -58,7 +60,7 @@ public class AtualizarFunc extends AppCompatActivity {
                 String CargoFunc=editCargoFunc.getText().toString();
 
                     //update
-                    db.updateServ(new Funcionario(Integer.parseInt(String.valueOf(CodigoFun)),EmailFunc, NomeFunc,SenhaFunc, CargoFunc));
+                    db.updateServ(new Funcionario(Integer.parseInt(String.valueOf(codFunc)),EmailFunc, SenhaFunc, NomeFunc, CargoFunc));
                     //mensagem de sucesso
                     Toast.makeText(AtualizarFunc.this, "Funcionario Atualizado ", Toast.LENGTH_LONG).show();
                     TelaConta();

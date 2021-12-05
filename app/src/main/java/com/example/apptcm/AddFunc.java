@@ -64,5 +64,6 @@ public class AddFunc extends AppCompatActivity {
     public void TelaConta(){
         Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
         startActivity(Conta);
+        finish();
     }
 }

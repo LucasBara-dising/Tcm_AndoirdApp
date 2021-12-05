@@ -19,6 +19,7 @@
         android:id="@+id/btnFechaAdd"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fecha" />
@@ -107,7 +108,9 @@
         android:layout_width="260dp"
         android:layout_height="64dp"
         android:layout_marginBottom="0dp"
-        android:background="@color/Azul"
+        android:background="@drawable/borda_aredondada"
+        app:backgroundTint="@color/Azul"
+        android:textColor="@color/white"
         android:text="@string/TxtSalvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

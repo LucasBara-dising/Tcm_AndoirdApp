@@ -67,6 +67,11 @@
                 style="@style/BtnPadraoConta"
                 android:text="@string/TxtSuporte"/>
 
+            <Button
+                android:id="@+id/btnSalvaDados"
+                style="@style/BtnPadraoConta"
+                android:text="@string/TxtSalvar"/>
+
             <TextView
                 android:id="@+id/txtView37"
                 style="@style/TxtPadraoConta"
@@ -93,7 +98,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="45dp"
                 android:background="@drawable/borda_aredondada"
-                app:backgroundTint="@color/material_on_primary_disabled"
+                app:backgroundTint="@color/Azul"
                 android:padding="10dp"
                 android:text="@string/TxtLogout"
                 android:textAllCaps="false"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,9 +26,9 @@ public class AtualizaServico extends AppCompatActivity {
         setContentView(R.layout.activity_atualiza_servico);
 
         Spinner dropdownNivel=(Spinner)findViewById(R.id.dropdownNivel);
-        //ArrayAdapter<CharSequence> adapter = new ArrayAdapter.createFromResource(this, R.array.ItensDropdown, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //dropdownNivel.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ItensDropdown));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownNivel.setAdapter(adapter);
 
         editNomeEmpresa= (EditText)findViewById(R.id.editNomeEmpresa);
         editTitulo=(EditText)findViewById(R.id.editTitulo);
@@ -35,7 +36,9 @@ public class AtualizaServico extends AppCompatActivity {
         editDescserv=(EditText)findViewById(R.id.editDescserv);
         editAreaserv=(EditText) findViewById(R.id.editAreaserv);
 
-        int CodigoServ=1;
+        Intent intent = getIntent();
+        int CodigoServ = intent.getIntExtra("codServ",0);
+
         Servico servico= db.selecionarServico(CodigoServ);
 
         editNomeEmpresa.setText(servico.getNomeEmpresa());
@@ -43,6 +46,7 @@ public class AtualizaServico extends AppCompatActivity {
         editTextDate.setText(servico.getPrazo());
         editDescserv.setText(servico.getDescServ());
         editAreaserv.setText(servico.getAreaServ());
+        //dropdownNivel.setSelection(Integer.parseInt(servico.getAreaServ()));
 
         btnAtualiza= (Button)findViewById(R.id.btnAtualiza);
         btnAtualiza.setOnClickListener(new View.OnClickListener() {
@@ -54,18 +58,28 @@ public class AtualizaServico extends AppCompatActivity {
                 String prazo=editTextDate.getText().toString();
                 String descricao=editDescserv.getText().toString();
                 String areaTrab=editAreaserv.getText().toString();
+                String NivelConclusao=dropdownNivel.getSelectedItem().toString();
 
                 //update
-                    db.updateServ(new Funcionario(Integer.parseInt(String.valueOf(CodigoServ)),nomeEmpresa, titulo,prazo, descricao));
+                    db.updateServ(new Servico(Integer.parseInt(String.valueOf(CodigoServ)),nomeEmpresa, titulo,prazo, descricao,areaTrab,NivelConclusao));
                     //mensagem de sucesso
                     Toast.makeText(AtualizaServico.this, "Serviço Atualizado ", Toast.LENGTH_LONG).show();
                     TelaDetalhes();
             }
         });
+
+        ImageView btnFechaAdd= (ImageView)findViewById(R.id.btnFechaAdd);
+        btnFechaAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TelaDetalhes();
+            }
+        });
     }
 
     private void TelaDetalhes() {
-        Intent Detalhes = new Intent(getApplicationContext(), DetalhesServ.class);
-        startActivity(Detalhes);
+        Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
+        startActivity(Lista);
     }
+
 }
