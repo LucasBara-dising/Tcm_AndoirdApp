@@ -11,6 +11,11 @@ public class Funcionario {
 
     }
 
+    public Funcionario(int VidFunc){
+        this.idFunc=VidFunc;
+    }
+
+
     //update
     public Funcionario(int VidFunc, String VEmailFunc, String VSenhaFunc, String VNomeFunc, String VCargoFunc){
         this.idFunc=VidFunc;

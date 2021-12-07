@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login"
+            android:name=".Splash"
+            android:exported="true" />
+        <activity
+            android:name=".AddFunc"
             android:exported="true" />
         <activity
             android:name=".AddServ"
@@ -38,7 +41,7 @@
             android:name=".DetalhesServ"
             android:exported="true" />
         <activity
-            android:name=".AddFunc"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

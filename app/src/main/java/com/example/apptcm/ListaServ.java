@@ -73,37 +73,21 @@ public class ListaServ extends AppCompatActivity {
     }
 
     //Lista de serviços
-//    public void ListaServico(){
-//        List<Servico> servicos = db.ListaTodosServicos();
-//
-//        arrayList= new ArrayList<String>();
-//        adpater=new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-//        listviewServ=(ListView)findViewById(R.id.listviewServ);
-//        listviewServ.setAdapter(adpater);
-//
-//        for(Servico c:servicos){
-//            arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n"+
-//                    "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
-//            adpater.notifyDataSetChanged();
-//        }
-//    }
-
-
-    //listafunc
     public void ListaServico(){
-        List<Funcionario> funcionarios = db.ListaTodosFuc();
+        List<Servico> servicos = db.ListaTodosServicos();
 
         arrayList= new ArrayList<String>();
         adpater=new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
         listviewServ=(ListView)findViewById(R.id.listviewServ);
         listviewServ.setAdapter(adpater);
 
-        for(Funcionario c:funcionarios){
-            arrayList.add(c.getIdFunc()+ "-"+"email: " +c.getEmailFunc()+"\n"+
-                    "senha: "+c.getSenhaFunc()+"\n"+ "nome: "+c.getNomeFunc()+"\n"+ "Cargo: "+c.getCargoFunc());
+        for(Servico c:servicos){
+            arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n"+
+                    "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
             adpater.notifyDataSetChanged();
         }
     }
+
 
     public void TelaAddServ(){
         Intent AddServ = new Intent(getApplicationContext(), AddServ.class);

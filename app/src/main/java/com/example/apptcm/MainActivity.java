@@ -10,17 +10,19 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     //giroscopio
     SensorManager sensorManager;
     Sensor sensor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +73,13 @@ public class MainActivity extends AppCompatActivity {
     public void TelaConta(){
         Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
         startActivity(Conta);
+        finish();
     }
 
     public void AddServ(){
         Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
         startActivity(AddServ);
+        finish();
     }
 
     public void onResume() {

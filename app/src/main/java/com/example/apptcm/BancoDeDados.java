@@ -108,7 +108,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         Cursor cursor=db.query(Tabela_servico,
                 new String[]{Coluna_CodServ, Coluna_NomeEmpresa, Coluna_TituloServ, Coluna_Prazo, Coluna_DescServ, Coluna_AreaServ,Coluna_NivelConclusao},
                 Coluna_CodServ+"=?",new String[]{String.valueOf(codigo)},null, null, null,null);
-        if(cursor!=null){
+        if(cursor!=null &&  cursor.getCount()>0){
             cursor.moveToFirst();
         }
 
@@ -193,6 +193,22 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return  ListaFuncionarios;
     }
 
+
+    //lista Todos func
+    public Funcionario ValidaFunc(String email, String senha){
+
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        Cursor cursor=db.query(Tabela_Funcionario,
+                new String[]{(Coluna_idFunc)},
+                Coluna_EmailFunc+"=? AND "+ Coluna_SenhaFunc+ "=?" ,new String[]{email,senha},null, null, null, String.valueOf(1));
+        if(cursor!=null && cursor.getCount()>0){
+            cursor.moveToFirst();
+        }
+
+        return new Funcionario(Integer.parseInt(cursor.getString(0)));
+    }
+
     //Insert func
     void addFunc(Funcionario funcionario){
         SQLiteDatabase db=this.getWritableDatabase();
@@ -206,6 +222,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         db.insert(Tabela_Funcionario, null, values);
         db.close();
     }
+
 
 
     //select

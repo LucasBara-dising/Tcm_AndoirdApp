@@ -32,14 +32,11 @@ public class AddFunc extends AppCompatActivity {
     private static final int CONTACT_PERMISSION_CODE = 1;
     private static final int CONTACT_PICK_CODE = 2;
 
-    //=====================Terminado=======================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_func);
-
-
 
         editEmailFunc= (EditText)findViewById(R.id.editEmailFunc);
         editNomeFunc=(EditText)findViewById(R.id.editNomeFunc);
@@ -86,8 +83,6 @@ public class AddFunc extends AppCompatActivity {
                 String NomeFunc=editNomeFunc.getText().toString();
                 String SenhaFunc=editSenhaFunc.getText().toString();
                 String CargoFunc=dropdownCargo.getSelectedItem().toString();
-                //String TelFunc=editTelFunc.getText().toString();
-
 
 
                 if(EmailFunc.isEmpty() || NomeFunc.isEmpty() || SenhaFunc.isEmpty() || CargoFunc.isEmpty()){

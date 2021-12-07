@@ -79,8 +79,8 @@
 
     <Button
         android:id="@+id/btnServ"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/borda_aredondada"
         android:foreground="@drawable/add_serv"
@@ -90,18 +90,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFunc" />
 
-    <Button
-        android:id="@+id/btnFunc"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/borda_aredondada"
-        android:foreground="@drawable/novo_func"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/Azul"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView46" />
+            <Button
+                android:id="@+id/btnFunc"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/borda_aredondada"
+                android:foreground="@drawable/novo_func"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/Azul"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtView46" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/btnFunc"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="259dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

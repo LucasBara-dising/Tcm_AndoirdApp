@@ -103,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:text="@string/TxtCargoFunc"
-        app:layout_constraintBottom_toTopOf="@+id/dropdownCargo"
+        app:layout_constraintBottom_toTopOf="@+id/dropdownCargoUpdate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/dropdownCargo"
+        android:id="@+id/dropdownCargoUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -118,37 +118,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editSenhaFunc" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/TxtTel"
-        app:layout_constraintBottom_toTopOf="@+id/editTelFunc"
-        app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/editTelFunc"
-                style="@style/editText"
-                android:layout_marginTop="48dp"
-                android:enabled="true"
-                android:inputType="text"
-                app:layout_constraintTop_toBottomOf="@+id/dropdownCargo"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="50dp" />
-
-
-    <Button
-        android:id="@+id/btnSalvarFunc"
-        android:layout_width="260dp"
-        android:layout_height="64dp"
-        android:background="@color/Azul"
-        android:text="@string/TxtSalvar"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTelFunc" />
+            <Button
+                android:id="@+id/btnSalvarFunc"
+                android:layout_width="260dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/Azul"
+                android:text="@string/TxtSalvar"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dropdownCargoUpdate" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

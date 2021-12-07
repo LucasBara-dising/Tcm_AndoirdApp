@@ -25,13 +25,20 @@ public class ContaFunc extends AppCompatActivity {
 
     final String filename = "DadosFunc.txt";
 
-    int codFunc=2;
-
+    //int codFunc= 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conta_func);
+
+        Intent intent = getIntent();
+        int codFunc1 = intent.getIntExtra("codFunc",1);
+
+        int codFunc =codFunc1;
+
+        //recebe o codigo da tela login
+        Toast.makeText(ContaFunc.this, "Id"+ codFunc, Toast.LENGTH_LONG).show();
 
         Funcionario funcionario= db.selecionarFunc(codFunc);
 
@@ -53,7 +60,7 @@ public class ContaFunc extends AppCompatActivity {
         novoFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaAddFunc();
+                    TelaAddFunc();
             }
         });
 
@@ -82,10 +89,6 @@ public class ContaFunc extends AppCompatActivity {
     public void TelaUpdateFunc(){
         Intent UpdadeServ = new Intent(getApplicationContext(), AtualizarFunc.class);
         startActivity(UpdadeServ);
-
-        Intent intent = new Intent(ContaFunc.this, AtualizarFunc.class);
-        intent.putExtra("codFunc", codFunc);
-        startActivity(intent);
     }
 
     public void TelaHome(){
@@ -95,6 +98,9 @@ public class ContaFunc extends AppCompatActivity {
 
     public void salvar() {
         try {
+            Intent intent = getIntent();
+            int codFunc = intent.getIntExtra("codFunc",0);
+
             Funcionario funcionario= db.selecionarFunc(codFunc);
 
             FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE);
