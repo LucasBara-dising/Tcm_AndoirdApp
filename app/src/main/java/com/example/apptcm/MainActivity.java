@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -39,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView ImgBtnConta = (ImageView) findViewById(R.id.ImgBtnConta);
         ImgBtnConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TelaConta();
+            }
+        });
+
+        Button btnServ = (Button) findViewById(R.id.btnServ);
+        btnServ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TelaListaServ();
+            }
+        });
+
+        Button btnFunc = (Button) findViewById(R.id.btnFunc);
+        btnFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TelaConta();

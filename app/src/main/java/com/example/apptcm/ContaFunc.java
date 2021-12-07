@@ -25,7 +25,7 @@ public class ContaFunc extends AppCompatActivity {
 
     final String filename = "DadosFunc.txt";
 
-    int codFunc=1;
+    int codFunc=2;
 
 
     @Override

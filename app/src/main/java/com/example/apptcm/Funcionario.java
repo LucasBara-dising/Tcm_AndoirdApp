@@ -62,8 +62,7 @@ public class Funcionario {
     public String getCargoFunc() {
         return CargoFunc;
     }
-    public void setCargoFunc(String cargoFunc) {
-        CargoFunc = cargoFunc;
-    }
+    public void setCargoFunc(String cargoFunc) { CargoFunc = cargoFunc; }
+
 
 }

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class AtualizaServico extends AppCompatActivity {
 
-    //DROPDWON DE NIVEL DE CONCLUÇÃO
+
     EditText editNomeEmpresa, editTitulo, editTextDate, editDescserv, editAreaserv;
     Button btnAtualiza;
 
@@ -35,6 +35,8 @@ public class AtualizaServico extends AppCompatActivity {
         editTextDate=(EditText)findViewById(R.id.editTextDate);
         editDescserv=(EditText)findViewById(R.id.editDescserv);
         editAreaserv=(EditText) findViewById(R.id.editAreaserv);
+
+
 
         Intent intent = getIntent();
         int CodigoServ = intent.getIntExtra("codServ",0);

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ContaFunc">
 
+
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
@@ -123,6 +124,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:background="@color/Azul"
+        android:layout_margin="10dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -132,6 +134,7 @@
         android:id="@+id/txtView29"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/TxtConta"
         android:textAlignment="center"
         android:textColor="@color/white"

@@ -21,6 +21,8 @@
     <string name="TxtNomeFunc">Nome</string>
     <string name="txtSenhaFunc">Senha</string>
     <string name="TxtCargoFunc">Cargo</string>
+    <string name="TxtEndereco">Endereço</string>
+    <string name="TxtTel">telefone</string>
 
 
     <!--    Tela add Serv-->
@@ -52,5 +54,10 @@
         <item>Em Andamento</item>
         <item>Prazo Proximo</item>
         <item>Atrasado</item>
+    </string-array>
+
+    <string-array name="CargosFunc">
+        <item>Funcionario</item>
+        <item>Lider</item>
     </string-array>
 </resources>
