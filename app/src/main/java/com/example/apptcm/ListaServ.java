@@ -30,9 +30,7 @@ public class ListaServ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_serv);
 
-
         ListaServico();
-
 
         imgBtnVoltaHome1= (ImageButton)findViewById(R.id.imgBtnVoltaHome1);
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
@@ -51,19 +49,21 @@ public class ListaServ extends AppCompatActivity {
         });
 
 
+        //ao clicar no item da lista
         listviewServ=(ListView)findViewById(R.id.listviewServ);
         listviewServ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String conteudo=(String) listviewServ.getItemAtPosition(position);
 
-                //vai pegar oq estiver entes do "-" na varaivel conteudo
+                //vai pegar oq estiver entes do "-" na varaivel conteudo ouseja o cod
                 String cod=conteudo.substring(0,conteudo.indexOf("-"));
 
                 Servico servico= db.selecionarServico(Integer.parseInt(String.valueOf(cod)));
 
                 int codServ= Integer.parseInt(String.valueOf(cod));
 
+                //manda o cod pra tela de detalhes
                 Intent intent = new Intent(ListaServ.this, DetalhesServ.class);
                 intent.putExtra("codServ", codServ);
                 startActivity(intent);
@@ -81,13 +81,14 @@ public class ListaServ extends AppCompatActivity {
         listviewServ=(ListView)findViewById(R.id.listviewServ);
         listviewServ.setAdapter(adpater);
 
+        //loop para mostrar tudo
         for(Servico c:servicos){
+            //corpo do item list
             arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n"+
                     "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
             adpater.notifyDataSetChanged();
         }
     }
-
 
     public void TelaAddServ(){
         Intent AddServ = new Intent(getApplicationContext(), AddServ.class);

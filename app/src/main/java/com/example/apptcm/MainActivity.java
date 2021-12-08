@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    //dados do sensor
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(gyroListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
@@ -92,10 +93,12 @@ public class MainActivity extends AppCompatActivity {
         sensorManager.unregisterListener(gyroListener);
     }
 
+    //recebe os valores do girosopio
     public SensorEventListener gyroListener = new SensorEventListener() {
         public void onAccuracyChanged(Sensor sensor, int acc) {
         }
 
+        //se o sensor for a mais de 4 puxa a dela de adiconar serviço assim sendo um tipo de atalho
         public void onSensorChanged(SensorEvent event) {
             float y = event.values[1];
 

@@ -83,18 +83,19 @@
         tools:ignore="MissingConstraints" />
 
 
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="260dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="0dp"
-        android:text="@string/TxtSalvar"
-        android:background="@color/Azul"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAreaserv" />
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="260dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/borda_aredondada"
+                android:backgroundTint="@color/Azul"
+                android:text="@string/TxtSalvar"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editAreaserv" />
 
     <TextView
         android:id="@+id/textView3"

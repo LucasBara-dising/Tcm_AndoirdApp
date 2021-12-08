@@ -23,23 +23,21 @@ public class ContaFunc extends AppCompatActivity {
     Button novoFunc, updateConta, btnSalvaDados;
     BancoDeDados db=new BancoDeDados(this);
 
+    //nome do arquivo do armazenamneto
     final String filename = "DadosFunc.txt";
-
-    //int codFunc= 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conta_func);
 
+        //recebe os dados da outra tela
         Intent intent = getIntent();
         int codFunc1 = intent.getIntExtra("codFunc",1);
 
         int codFunc =codFunc1;
 
-        //recebe o codigo da tela login
-        Toast.makeText(ContaFunc.this, "Id"+ codFunc, Toast.LENGTH_LONG).show();
-
+        //faz o select para mostrar o nome e o emial do user
         Funcionario funcionario= db.selecionarFunc(codFunc);
 
         TextView txtViewNameFunc=(TextView)findViewById(R.id.txtViewNameFunc);
@@ -96,13 +94,18 @@ public class ContaFunc extends AppCompatActivity {
         startActivity(home);
     }
 
+    //armazenamento interno
+    //vai salvar alguns dados do user
     public void salvar() {
         try {
+            //recebe o codigo
             Intent intent = getIntent();
-            int codFunc = intent.getIntExtra("codFunc",0);
+            int codFunc = intent.getIntExtra("codFunc",1);
 
+            //seleciona
             Funcionario funcionario= db.selecionarFunc(codFunc);
 
+            //faz o texto
             FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE);
             String Dados = "Nome: " + funcionario.getNomeFunc() + "\n" +"Email: " + funcionario.getEmailFunc();
             //grava na memoria

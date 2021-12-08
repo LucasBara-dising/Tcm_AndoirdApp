@@ -29,9 +29,9 @@ public class AddFunc extends AppCompatActivity {
 
     BancoDeDados db=new BancoDeDados(this);
 
+    //picker
     private static final int CONTACT_PERMISSION_CODE = 1;
     private static final int CONTACT_PICK_CODE = 2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +63,11 @@ public class AddFunc extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (checkContactPermission()){
-                    //permission granted, pick contact
+                    //se permisão foi dada ablidat para pegar contato
                     pickContactIntent();
                 }
                 else {
-                    //permission not granted, request
+                    //se não tiver permissão pede
                     requestContactPermission();
                 }
             }
@@ -86,7 +86,7 @@ public class AddFunc extends AppCompatActivity {
 
 
                 if(EmailFunc.isEmpty() || NomeFunc.isEmpty() || SenhaFunc.isEmpty() || CargoFunc.isEmpty()){
-                    //mensagem de erro
+                    //mensagem de erro se algum campo não entiver  preenchido
                     Toast.makeText(AddFunc.this, "Os campos são Obrigatoiros",Toast.LENGTH_LONG).show();
 
                 }else {
@@ -103,25 +103,23 @@ public class AddFunc extends AppCompatActivity {
 //==========================picker contato
     //checa permissao
     private boolean checkContactPermission(){
-        //check if contact permission was granted or not
+        //verifica se tem permisão
         boolean result = ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.READ_CONTACTS) == (PackageManager.PERMISSION_GRANTED
         );
 
-        return result;  //true if permission granted, false if not
+        return result;
     }
 
     //pede permissao
     private void requestContactPermission(){
-        //permissions to request
         String[] permission = {Manifest.permission.READ_CONTACTS};
-
         ActivityCompat.requestPermissions(this, permission, CONTACT_PERMISSION_CODE);
     }
 
+    //pega o contato
     private void pickContactIntent(){
-        //intent to pick contact
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         startActivityForResult(intent, CONTACT_PICK_CODE);
     }
@@ -129,10 +127,10 @@ public class AddFunc extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //handle permission request result
+        //verifica o resultado da permissão
         if (requestCode == CONTACT_PERMISSION_CODE){
             if (grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                //permission granted, can pick contact now
+                //permite escolher o contato
                 pickContactIntent();
             }
             else {
@@ -145,11 +143,10 @@ public class AddFunc extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //handle intent results
         if (resultCode == RESULT_OK){
             if (requestCode == CONTACT_PICK_CODE) {
                 Cursor cursor1, cursor2;
-                //get data from intent
+                //recebe os dados
                 Uri uri = data.getData();
                 cursor1 = getContentResolver().query(uri, null, null, null, null);
 
@@ -166,11 +163,10 @@ public class AddFunc extends AppCompatActivity {
                                 null,
                                 null
                         );
-                        //a contact may have multiple phone numbers
                         while (cursor2.moveToNext()) {
-                            //get phone number
+                            //recebe numero
                             @SuppressLint("Range") String contactNumber = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                            //set details
+                            //add a edittext o numero
                             EditText editTelFunc = (EditText) findViewById(R.id.editTelFunc);
                             editTelFunc.setText(contactNumber);
                         }
@@ -182,7 +178,6 @@ public class AddFunc extends AppCompatActivity {
         }
 
     }
-
 
     public void TelaConta(){
         Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);

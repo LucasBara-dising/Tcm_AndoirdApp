@@ -31,6 +31,7 @@ public class DetalhesServ extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_serv);
 
         Button btnPrazo=(Button)findViewById(R.id.btnPrazo);
+
         //volta pra lista
         ImageButton imgBtnVoltaHome1=(ImageButton)findViewById(R.id.imgBtnVoltaHome1);
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +56,13 @@ public class DetalhesServ extends AppCompatActivity {
         btnUpdateServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //recebe dados
                 Intent intent1 = getIntent();
                 int codServ = intent1.getIntExtra("codServ",0);
 
                 TelaUpdateServ();
 
+                //manda pra tela de update
                 Intent intent = new Intent(DetalhesServ.this, AtualizaServico.class);
                 intent.putExtra("codServ", codServ);
                 startActivity(intent);
@@ -82,11 +85,14 @@ public class DetalhesServ extends AppCompatActivity {
          txtViewArea=(TextView)findViewById(R.id.txtViewArea);
          txtViewDesc=(TextView)findViewById(R.id.txtViewDesc);
 
+         //recebe cod
         Intent intent = getIntent();
         int codServ = intent.getIntExtra("codServ",0);
 
+        //seleciona
         Servico servico= db.selecionarServico(codServ);
 
+        //define os texto dos campos
         txtViewTitulo.setText(servico.getTituloServ());
         txtViewEmpresa.setText(servico.getNomeEmpresa());
         txtViewDesc.setText(servico.getPrazo());
@@ -95,6 +101,7 @@ public class DetalhesServ extends AppCompatActivity {
 
         String nivelConclusao=servico.getNivelConclusao();
 
+        //switch para definir a cor do btn de nivel de conclusão
         switch (nivelConclusao){
             case "Terminado":
                 btnPrazo.setBackgroundColor(Color.parseColor("#42f575"));
@@ -137,11 +144,14 @@ public class DetalhesServ extends AppCompatActivity {
 
     //salvar exeterno
     public void SalveServ(){
+        //recebe valor
         Intent intent = getIntent();
         int codServ = intent.getIntExtra("codServ",0);
 
+        //seleciona dados
         Servico servico= db.selecionarServico(codServ);
 
+        //monsta texto que vai ser salvo
         String  nomeDoAquivo = "DestalhesServ.txt";
         String  pasta = "servico";
         String  conteudo = "Empresa: "+servico.getNomeEmpresa() + "\n" +
@@ -149,6 +159,7 @@ public class DetalhesServ extends AppCompatActivity {
                             "Prazo: " + servico.getDescServ()+ "\n" +
                             "Descrição: " + servico.getPrazo();
 
+        //se não receber o texto entoa salve nulo
         if(!conteudo.equals("")) {
             File myExternalFile = new File(getExternalFilesDir(pasta), nomeDoAquivo);
             FileOutputStream fos = null;
@@ -163,9 +174,8 @@ public class DetalhesServ extends AppCompatActivity {
             catch (IOException e) {
                 e.printStackTrace();
             }
-
-            Toast.makeText(DetalhesServ.this, "Os Dados Foram Salvos",
-                    Toast.LENGTH_SHORT).show();
+            //mensagem de sucesso
+            Toast.makeText(DetalhesServ.this, "Os Dados Foram Salvos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -175,14 +185,15 @@ public class DetalhesServ extends AppCompatActivity {
     }
 
     public void DeleteServ(){
-
+        //recebe valor
         Intent intent = getIntent();
         int codServ = intent.getIntExtra("codServ",0);
 
         Servico servico=new Servico();
         servico.setCodeServ(codServ);
+        //apaga
         db.ApagaServ(servico);
-
+        //mensagem de sucesso
         Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
         TelaListaServ();
     }

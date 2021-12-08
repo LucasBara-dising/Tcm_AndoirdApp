@@ -16,7 +16,6 @@ import android.widget.Toast;
 public class AtualizarFunc extends AppCompatActivity {
 
     EditText editEmailFunc, editNomeFunc, editSenhaFunc, editTelFunc;
-
     BancoDeDados db=new BancoDeDados(this);
 
     @Override
@@ -35,6 +34,7 @@ public class AtualizarFunc extends AppCompatActivity {
 
         Funcionario funcionario= db.selecionarFunc(codFunc);
 
+        //prenche todos os campos com dados
         editEmailFunc.setText(funcionario.getEmailFunc());
         editNomeFunc.setText(funcionario.getNomeFunc());
         editSenhaFunc.setText(funcionario.getSenhaFunc());
@@ -53,22 +53,24 @@ public class AtualizarFunc extends AppCompatActivity {
             }
         });
 
+        //ao clicar no btn salvar vai p
         Button btnSalvarFunc = (Button) findViewById(R.id.btnSalvarFunc);
         btnSalvarFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //recebe os valores
                 String EmailFunc= editEmailFunc.getText().toString();
                 String NomeFunc=editNomeFunc.getText().toString();
                 String SenhaFunc=editSenhaFunc.getText().toString();
                 String CargoFunc=dropdownCargoUpdate.getSelectedItem().toString();
 
-                    //update
+                    //faz o update
                     db.updateServ(new Funcionario(Integer.parseInt(String.valueOf(codFunc)),EmailFunc, SenhaFunc, NomeFunc, CargoFunc));
                     //mensagem de sucesso
                     Toast.makeText(AtualizarFunc.this, "Funcionario Atualizado ", Toast.LENGTH_LONG).show();
+                    //leva pra tela conta
                     TelaConta();
-
             }
         });
     }

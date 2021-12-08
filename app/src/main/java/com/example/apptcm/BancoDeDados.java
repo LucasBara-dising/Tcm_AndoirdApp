@@ -36,8 +36,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
     public static final String Coluna_SenhaFunc = "SenhaFunc";
     public static final String Coluna_NomeFunc = "NomeFunc";
     public static final String Coluna_CargoFunc = "CargoFunc";
-    public static final String Coluna_TelFunc = "TelFunc";
 
+    //nome do banco e versão
     private static final String DATABASE_Nome = "BdTcm.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -167,34 +167,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     //=================================Funcionario=====================
 
-    //lista Todos func
-    public List<Funcionario> ListaTodosFuc(){
-        List<Funcionario>  ListaFuncionarios= new ArrayList<Funcionario>();
-
-        String query= "SELECT * FROM " + Tabela_Funcionario;
-
-        SQLiteDatabase db=this.getWritableDatabase();
-
-        Cursor c =db.rawQuery(query,null);
-
-        if(c.moveToFirst()){
-            do{
-                Funcionario funcionario= new Funcionario();
-                funcionario.setIdFunc(Integer.parseInt(c.getString(0)));
-                funcionario.setEmailFunc(c.getString(1));
-                funcionario.setSenhaFunc(c.getString(2));
-                funcionario.setCargoFunc(c.getString(3));
-                funcionario.setNomeFunc(c.getString(4));
-
-                ListaFuncionarios.add(funcionario);
-
-            }while (c.moveToNext());
-        }
-        return  ListaFuncionarios;
-    }
-
-
-    //lista Todos func
+    //Valida func
     public Funcionario ValidaFunc(String email, String senha){
 
         SQLiteDatabase db=this.getWritableDatabase();
@@ -222,8 +195,6 @@ public class BancoDeDados extends SQLiteOpenHelper {
         db.insert(Tabela_Funcionario, null, values);
         db.close();
     }
-
-
 
     //select
     Funcionario selecionarFunc(int codigoFunc){
@@ -255,5 +226,4 @@ public class BancoDeDados extends SQLiteOpenHelper {
         db.update(Tabela_Funcionario, values, Coluna_idFunc + "= ?",
                 new String[]{String.valueOf(funcionario.getIdFunc()) });
     }
-
 }

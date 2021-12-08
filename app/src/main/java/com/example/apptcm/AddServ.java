@@ -16,10 +16,7 @@ import android.widget.Toast;
 public class AddServ extends AppCompatActivity {
 
     EditText editNomeEmpresa, editTitulo, editTextDate, editDescserv,editAreaserv;
-
     BancoDeDados db=new BancoDeDados(this);
-
-    //===================== TERMIANADO===============
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +43,7 @@ public class AddServ extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //recebe os valores dos campos
                 String nomeEmpresa= editNomeEmpresa.getText().toString();
                 String titulo=editTitulo.getText().toString();
                 String prazo=editTextDate.getText().toString();
@@ -53,6 +51,7 @@ public class AddServ extends AppCompatActivity {
                 String areaTrab=editAreaserv.getText().toString();
 
 
+                //se tiver algum vazio mostrra erro
                 if(nomeEmpresa.isEmpty() || descricao.isEmpty() || prazo.isEmpty() || titulo.isEmpty()|| areaTrab.isEmpty()){
                     //mensagem de erro
                    Toast.makeText(AddServ.this, "Os campos são Obrigatoiros",Toast.LENGTH_LONG).show();

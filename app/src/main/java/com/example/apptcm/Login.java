@@ -24,18 +24,16 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //adciona o user adm
+        db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
+
         btnLogin = (Button) findViewById(R.id.btnLogin);
-
-        db.addFunc(new Funcionario("adm","adm","Root","Lider"));
-
         editUserLogin = (EditText) findViewById(R.id.editUserLogin);
         EditSenhaLogin = (EditText) findViewById(R.id.EditSenhaLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUserLogin.setText("adm");
-                EditSenhaLogin.setText("adm");
-
+                //recebe os valores dos editText
                 String login = editUserLogin.getText().toString();
                 String senha = EditSenhaLogin.getText().toString();
 
@@ -43,9 +41,12 @@ public class Login extends AppCompatActivity {
                 if(login.isEmpty() ||senha.isEmpty()){
                     Toast.makeText(Login.this, "Campos Obrigatorios", Toast.LENGTH_LONG).show();
                 }
+
                 else{
+                    //valida o login e sneha
                     Funcionario funcionario= db.ValidaFunc(login,senha);
 
+                    //se for valido
                     if(funcionario !=null){
                         int codFunc=funcionario.getIdFunc();
 

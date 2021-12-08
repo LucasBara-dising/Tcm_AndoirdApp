@@ -7,11 +7,12 @@
     tools:context=".Splash">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="333dp"
-        android:layout_height="53dp"
+        android:id="@+id/imageView2"
+        android:layout_width="248dp"
+        android:layout_height="63dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/LogoHzSys"
-        tools:layout_editor_absoluteY="319dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logohzsys" />
 </androidx.constraintlayout.widget.ConstraintLayout>
