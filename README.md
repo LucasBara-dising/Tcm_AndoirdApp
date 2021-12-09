@@ -37,6 +37,7 @@
 <li>Arthur Bernal</li>
 <li>Diego Oliveira</li>
 <li>João Paulo</li>
+<li>Guilherme Mathues</li>
 <li>Carlos Eduardo</li>
 </ul>
 
