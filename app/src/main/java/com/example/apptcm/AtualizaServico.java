@@ -35,9 +35,13 @@ public class AtualizaServico extends AppCompatActivity {
         editDescserv=(EditText)findViewById(R.id.editDescserv);
         editAreaserv=(EditText) findViewById(R.id.editAreaserv);
 
-
+        //cod projeto
         Intent intent = getIntent();
         int CodigoServ = intent.getIntExtra("codServ",0);
+
+        //recebe dados cod func
+        Intent intent1 = getIntent();
+        int codFunc = intent1.getIntExtra("codFunc",0);
 
         Servico servico= db.selecionarServico(CodigoServ);
 
@@ -64,7 +68,9 @@ public class AtualizaServico extends AppCompatActivity {
                     db.updateServ(new Servico(Integer.parseInt(String.valueOf(CodigoServ)),nomeEmpresa, titulo,prazo, descricao,areaTrab,NivelConclusao));
                     //mensagem de sucesso
                     Toast.makeText(AtualizaServico.this, "Serviço Atualizado ", Toast.LENGTH_LONG).show();
-                    TelaDetalhes();
+                Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
+                Lista.putExtra("codFunc",codFunc);
+                startActivity(Lista);
             }
         });
 
@@ -72,14 +78,10 @@ public class AtualizaServico extends AppCompatActivity {
         btnFechaAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaDetalhes();
+                Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
+                Lista.putExtra("codFunc",codFunc);
+                startActivity(Lista);
             }
         });
     }
-
-    private void TelaDetalhes() {
-        Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
-        startActivity(Lista);
-    }
-
 }

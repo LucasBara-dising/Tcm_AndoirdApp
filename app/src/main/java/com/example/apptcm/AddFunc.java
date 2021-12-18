@@ -38,6 +38,10 @@ public class AddFunc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_func);
 
+        //recebe o codigo da tela conta
+        Intent intent = getIntent();
+        int codFunc = intent.getIntExtra("codFunc",1);
+
         editEmailFunc= (EditText)findViewById(R.id.editEmailFunc);
         editNomeFunc=(EditText)findViewById(R.id.editNomeFunc);
         editSenhaFunc=(EditText)findViewById(R.id.editSenhaFunc);
@@ -53,7 +57,9 @@ public class AddFunc extends AppCompatActivity {
         btnFechaAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               TelaConta();
+                Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                Conta.putExtra("codFunc",codFunc);
+                startActivity(Conta);
             }
         });
 
@@ -94,7 +100,10 @@ public class AddFunc extends AppCompatActivity {
                     db.addFunc(new Funcionario(EmailFunc, SenhaFunc, NomeFunc, CargoFunc));
                     //mensagem de sucesso
                     Toast.makeText(AddFunc.this, "Funcionario adicionado ", Toast.LENGTH_LONG).show();
-                    TelaConta();
+                    //manda pra tela conta
+                    Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                    Conta.putExtra("codFunc",codFunc);
+                    startActivity(Conta);
                 }
             }
         });
@@ -179,9 +188,4 @@ public class AddFunc extends AppCompatActivity {
 
     }
 
-    public void TelaConta(){
-        Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-        startActivity(Conta);
-        finish();
-    }
 }

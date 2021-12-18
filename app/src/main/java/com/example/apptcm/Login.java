@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //adciona o user adm
-        db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
+        //db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
         editUserLogin = (EditText) findViewById(R.id.editUserLogin);
@@ -50,15 +50,14 @@ public class Login extends AppCompatActivity {
                     if(funcionario !=null){
                         int codFunc=funcionario.getIdFunc();
 
-                        //mandando o cod para tela de conta
+                        Toast.makeText(Login.this, "id-"+codFunc, Toast.LENGTH_LONG).show();
+
+                        //mandando o cod para tela de conta e abrindo tela conta
                         Intent intent = new Intent(getApplicationContext(), ContaFunc.class);
                         intent.putExtra("codFunc",codFunc);
                         startActivity(intent);
-
-                        //abre home
-                        Intent home = new Intent(getApplicationContext(), ContaFunc.class);
-                        startActivity(home);
                     }
+
                     else{
                         Toast.makeText(Login.this, "Login E Senha não existe", Toast.LENGTH_LONG).show();
                     }

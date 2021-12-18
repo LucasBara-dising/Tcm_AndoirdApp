@@ -30,13 +30,19 @@ public class ListaServ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_serv);
 
+        //recebe os dados da outra tela
+        Intent intent = getIntent();
+        int codFunc = intent.getIntExtra("codFunc",0);
+
         ListaServico();
 
         imgBtnVoltaHome1= (ImageButton)findViewById(R.id.imgBtnVoltaHome1);
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaHome();
+                Intent Home = new Intent(getApplicationContext(), MainActivity.class);
+                Home.putExtra("codFunc",codFunc);
+                startActivity(Home);
             }
         });
 
@@ -44,7 +50,9 @@ public class ListaServ extends AppCompatActivity {
         BtnAddServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaAddServ();
+                Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
+                AddServ.putExtra("codFunc",codFunc);
+                startActivity(AddServ);
             }
         });
 
@@ -66,6 +74,8 @@ public class ListaServ extends AppCompatActivity {
                 //manda o cod pra tela de detalhes
                 Intent intent = new Intent(ListaServ.this, DetalhesServ.class);
                 intent.putExtra("codServ", codServ);
+                //manda cod func
+                intent.putExtra("codFunc", codFunc);
                 startActivity(intent);
 
             }
@@ -88,16 +98,5 @@ public class ListaServ extends AppCompatActivity {
                     "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
             adpater.notifyDataSetChanged();
         }
-    }
-
-    public void TelaAddServ(){
-        Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
-        startActivity(AddServ);
-        finish();
-    }
-
-    public void TelaHome(){
-        Intent Home = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(Home);
     }
 }

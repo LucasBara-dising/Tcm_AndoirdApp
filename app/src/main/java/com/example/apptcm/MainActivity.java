@@ -2,7 +2,6 @@ package com.example.apptcm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -10,13 +9,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //recebe os dados da outra tela
+        Intent intent = getIntent();
+        int codFunc = intent.getIntExtra("codFunc",0);
+
         //instancianod giroscopio
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         TxtEdtPesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaListaServ();
+                Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("codFunc",codFunc);
+                startActivity(ListServ);
             }
         });
 
@@ -44,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         ImgBtnConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaConta();
+                Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                Conta.putExtra("codFunc",codFunc);
+                startActivity(Conta);
             }
         });
 
@@ -52,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         btnServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaListaServ();
+                Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("codFunc",codFunc);
+                startActivity(ListServ);
             }
         });
 
@@ -60,26 +67,11 @@ public class MainActivity extends AppCompatActivity {
         btnFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaConta();
+                Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                Conta.putExtra("codFunc",codFunc);
+                startActivity(Conta);
             }
         });
-    }
-
-    public void TelaListaServ(){
-        Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-        startActivity(ListServ);
-    }
-
-    public void TelaConta(){
-        Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-        startActivity(Conta);
-        finish();
-    }
-
-    public void AddServ(){
-        Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
-        startActivity(AddServ);
-        finish();
     }
 
     //dados do sensor
@@ -103,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
             float y = event.values[1];
 
             if(y>4){
-                AddServ();
+                Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
+                startActivity(AddServ);
             }
         }
     };

@@ -30,6 +30,14 @@ public class DetalhesServ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_serv);
 
+        //recebe  cod func
+        Intent intent1 = getIntent();
+        int codFunc = intent1.getIntExtra("codFunc",0);
+
+        //recebe cod prod
+        Intent intent = getIntent();
+        int codServ = intent.getIntExtra("codServ",0);
+
         Button btnPrazo=(Button)findViewById(R.id.btnPrazo);
 
         //volta pra lista
@@ -37,7 +45,9 @@ public class DetalhesServ extends AppCompatActivity {
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaListaServ();
+                Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("codFunc",codFunc);
+                startActivity(ListServ);
             }
         });
 
@@ -56,17 +66,14 @@ public class DetalhesServ extends AppCompatActivity {
         btnUpdateServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //recebe dados
-                Intent intent1 = getIntent();
-                int codServ = intent1.getIntExtra("codServ",0);
-
-                TelaUpdateServ();
+                Intent Atualizaserv = new Intent(getApplicationContext(), AtualizaServico.class);
+                Atualizaserv.putExtra("codFunc",codFunc);
+                startActivity(Atualizaserv);
 
                 //manda pra tela de update
                 Intent intent = new Intent(DetalhesServ.this, AtualizaServico.class);
                 intent.putExtra("codServ", codServ);
                 startActivity(intent);
-
             }
         });
 
@@ -75,7 +82,17 @@ public class DetalhesServ extends AppCompatActivity {
         btnExluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteServ();
+
+                Servico servico=new Servico();
+                servico.setCodeServ(codServ);
+                //apaga
+                db.ApagaServ(servico);
+                //mensagem de sucesso
+                Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
+
+                Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("codFunc",codFunc);
+                startActivity(ListServ);
             }
         });
 
@@ -85,9 +102,6 @@ public class DetalhesServ extends AppCompatActivity {
          txtViewArea=(TextView)findViewById(R.id.txtViewArea);
          txtViewDesc=(TextView)findViewById(R.id.txtViewDesc);
 
-         //recebe cod
-        Intent intent = getIntent();
-        int codServ = intent.getIntExtra("codServ",0);
 
         //seleciona
         Servico servico= db.selecionarServico(codServ);
@@ -132,14 +146,7 @@ public class DetalhesServ extends AppCompatActivity {
                 btnPrazo.setTextColor(Color.parseColor("#ffffff"));
                 btnPrazo.setText("Atrasado");
                 break;
-
         }
-
-    }
-
-    public void TelaListaServ(){
-        Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-        startActivity(ListServ);
     }
 
     //salvar exeterno
@@ -178,24 +185,4 @@ public class DetalhesServ extends AppCompatActivity {
             Toast.makeText(DetalhesServ.this, "Os Dados Foram Salvos", Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void TelaUpdateServ(){
-        Intent Atualizaserv = new Intent(getApplicationContext(), AtualizaServico.class);
-        startActivity(Atualizaserv);
-    }
-
-    public void DeleteServ(){
-        //recebe valor
-        Intent intent = getIntent();
-        int codServ = intent.getIntExtra("codServ",0);
-
-        Servico servico=new Servico();
-        servico.setCodeServ(codServ);
-        //apaga
-        db.ApagaServ(servico);
-        //mensagem de sucesso
-        Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
-        TelaListaServ();
-    }
-
 }

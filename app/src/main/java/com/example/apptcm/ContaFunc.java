@@ -3,6 +3,7 @@ package com.example.apptcm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class ContaFunc extends AppCompatActivity {
 
     ImageButton imgBtnVoltaHome;
-    Button novoFunc, updateConta, btnSalvaDados;
+    Button novoFunc, updateConta, btnSalvaDados, btnLogout;
     BancoDeDados db=new BancoDeDados(this);
 
     //nome do arquivo do armazenamneto
@@ -33,9 +34,8 @@ public class ContaFunc extends AppCompatActivity {
 
         //recebe os dados da outra tela
         Intent intent = getIntent();
-        int codFunc1 = intent.getIntExtra("codFunc",1);
+        int codFunc = intent.getIntExtra("codFunc",0);
 
-        int codFunc =codFunc1;
 
         //faz o select para mostrar o nome e o emial do user
         Funcionario funcionario= db.selecionarFunc(codFunc);
@@ -50,7 +50,9 @@ public class ContaFunc extends AppCompatActivity {
         imgBtnVoltaHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaHome();
+                Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                home.putExtra("codFunc",codFunc);
+                startActivity(home);
             }
         });
 
@@ -58,7 +60,9 @@ public class ContaFunc extends AppCompatActivity {
         novoFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    TelaAddFunc();
+                Intent AddFunc = new Intent(getApplicationContext(), AddFunc.class);
+                AddFunc.putExtra("codFunc",codFunc);
+                startActivity(AddFunc);
             }
         });
 
@@ -66,7 +70,9 @@ public class ContaFunc extends AppCompatActivity {
         updateConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaUpdateFunc();
+                Intent UpdadeServ = new Intent(getApplicationContext(), AtualizarFunc.class);
+                UpdadeServ.putExtra("codFunc",codFunc);
+                startActivity(UpdadeServ);
             }
         });
 
@@ -79,28 +85,13 @@ public class ContaFunc extends AppCompatActivity {
         });
     }
 
-    public void TelaAddFunc(){
-        Intent AddFunc = new Intent(getApplicationContext(), AddFunc.class);
-        startActivity(AddFunc);
-    }
-
-    public void TelaUpdateFunc(){
-        Intent UpdadeServ = new Intent(getApplicationContext(), AtualizarFunc.class);
-        startActivity(UpdadeServ);
-    }
-
-    public void TelaHome(){
-        Intent home = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(home);
-    }
-
     //armazenamento interno
     //vai salvar alguns dados do user
     public void salvar() {
         try {
             //recebe o codigo
             Intent intent = getIntent();
-            int codFunc = intent.getIntExtra("codFunc",1);
+            int codFunc = intent.getIntExtra("codFunc",0);
 
             //seleciona
             Funcionario funcionario= db.selecionarFunc(codFunc);

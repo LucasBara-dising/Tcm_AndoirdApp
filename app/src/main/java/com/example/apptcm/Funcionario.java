@@ -11,6 +11,7 @@ public class Funcionario {
 
     }
 
+    //select
     public Funcionario(int VidFunc){
         this.idFunc=VidFunc;
     }

@@ -177,6 +177,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
                 Coluna_EmailFunc+"=? AND "+ Coluna_SenhaFunc+ "=?" ,new String[]{email,senha},null, null, null, String.valueOf(1));
         if(cursor!=null && cursor.getCount()>0){
             cursor.moveToFirst();
+            int FuncVazio=0;
         }
 
         return new Funcionario(Integer.parseInt(cursor.getString(0)));
@@ -213,7 +214,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
 
     //update
-    void updateServ(Funcionario funcionario){
+    void updateFunc(Funcionario funcionario){
         SQLiteDatabase db=this.getWritableDatabase();
 
         ContentValues values= new ContentValues();

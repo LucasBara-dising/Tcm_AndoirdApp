@@ -49,7 +49,10 @@ public class AtualizarFunc extends AppCompatActivity {
         btnFechaAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelaConta();
+                //leva pra tela conta
+                Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                Conta.putExtra("codFunc",codFunc);
+                startActivity(Conta);
             }
         });
 
@@ -66,17 +69,15 @@ public class AtualizarFunc extends AppCompatActivity {
                 String CargoFunc=dropdownCargoUpdate.getSelectedItem().toString();
 
                     //faz o update
-                    db.updateServ(new Funcionario(Integer.parseInt(String.valueOf(codFunc)),EmailFunc, SenhaFunc, NomeFunc, CargoFunc));
+                    db.updateFunc(new Funcionario(Integer.parseInt(String.valueOf(codFunc)),EmailFunc, SenhaFunc, NomeFunc, CargoFunc));
                     //mensagem de sucesso
                     Toast.makeText(AtualizarFunc.this, "Funcionario Atualizado ", Toast.LENGTH_LONG).show();
                     //leva pra tela conta
-                    TelaConta();
+                    Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
+                    Conta.putExtra("codFunc",codFunc);
+                    startActivity(Conta);
             }
         });
     }
 
-    public void TelaConta(){
-        Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-        startActivity(Conta);
-    }
 }
