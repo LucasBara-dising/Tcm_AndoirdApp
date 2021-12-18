@@ -50,8 +50,6 @@ public class Login extends AppCompatActivity {
                     if(funcionario !=null){
                         int codFunc=funcionario.getIdFunc();
 
-                        Toast.makeText(Login.this, "id-"+codFunc, Toast.LENGTH_LONG).show();
-
                         //mandando o cod para tela de conta e abrindo tela conta
                         Intent intent = new Intent(getApplicationContext(), ContaFunc.class);
                         intent.putExtra("codFunc",codFunc);
