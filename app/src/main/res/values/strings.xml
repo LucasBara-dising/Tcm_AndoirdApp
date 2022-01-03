@@ -44,6 +44,17 @@
     <string name="TxtDescEvento">Descrição</string>
     <string name="txtNivelConclusoa">Nivel de Conclusão</string>
 
+    <!--Filtro -->
+    <string name="txtBuscar">Buscar</string>
+    <string name="txtTecs">Linguagens</string>
+    <string name="txtplvChave">Palavra Chave</string>
+    <string name="txtHtml">Html</string>
+    <string name="txtPHP">PHP</string>
+    <string name="txtAsp">Asp.net</string>
+    <string name="txtAndroid">Android</string>
+    <string name="txtServidor">Servidor</string>
+    <string name="txtJava">Java</string>
+
 
     <!-- desc img-->
     <string name="descImgSeta">sair para home</string>
@@ -52,7 +63,7 @@
     <string-array name="ItensDropdown">
         <item>Em Andamento</item>
         <item>Terminado</item>
-        <item>não iniciado</item>
+        <item>Não iniciado</item>
         <item>Prazo Proximo</item>
         <item>Atrasado</item>
     </string-array>

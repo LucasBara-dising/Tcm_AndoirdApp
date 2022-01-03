@@ -65,7 +65,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
+            <ImageView
+                android:id="@+id/imgFiltro"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/TxtEdtPesquisa"
+                app:layout_constraintTop_toBottomOf="@+id/ImgBtnConta"
+                app:srcCompat="@drawable/ajuste_de_contraste" />
+
+            <TextView
         android:id="@+id/txtView46"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

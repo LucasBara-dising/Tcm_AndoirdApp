@@ -66,7 +66,7 @@ public class AtualizaServico extends AppCompatActivity {
                 String titulo=editTitulo.getText().toString();
                 String prazo=editTextDate.getText().toString();
                 String descricao=editDescserv.getText().toString();
-                String areaTrab=editAreaserv.getText().toString();
+                String areaTrab=dropdownTecUsada.getSelectedItem().toString();
                 String NivelConclusao=dropdownNivel.getSelectedItem().toString();
 
                 //update

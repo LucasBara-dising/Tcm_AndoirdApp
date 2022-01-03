@@ -53,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageView imgFiltro = (ImageView) findViewById(R.id.imgFiltro);
+        imgFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Filtro = new Intent(getApplicationContext(), Filtros.class);
+                Filtro.putExtra("codFunc",codFunc);
+                startActivity(Filtro);
+            }
+        });
+
+
         Button btnServ = (Button) findViewById(R.id.btnServ);
         btnServ.setOnClickListener(new View.OnClickListener() {
             @Override

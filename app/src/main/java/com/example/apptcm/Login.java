@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
                 }
 
                 else{
-                    //valida o login e sneha
+                    //valida o login e senha
                     Funcionario funcionario= db.ValidaFunc(login,senha);
 
                     //se for valido
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
                         int codFunc=funcionario.getIdFunc();
 
                         //mandando o cod para tela de conta e abrindo tela conta
-                        Intent intent = new Intent(getApplicationContext(), ContaFunc.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("codFunc",codFunc);
                         startActivity(intent);
                     }

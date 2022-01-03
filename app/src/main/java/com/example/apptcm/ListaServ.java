@@ -25,26 +25,25 @@ public class ListaServ extends AppCompatActivity {
     ArrayAdapter<String> adpater;
     ArrayList<String> arrayList;
 
+    //recebe os dados da outra tela
+    Intent intent = getIntent();
+    int codFunc = intent.getIntExtra("codFunc",0);
+
+    //nivel conclusão
+    Intent intent1 = getIntent();
+    String NivelConclusao = String.valueOf(intent1.getIntExtra("NivelConclusao",0));
+
+    //nivel conslução
+    Intent intent2 = getIntent();
+    String nomeTec = String.valueOf(intent2.getIntExtra("areaTrab",0));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_serv);
 
-        //recebe os dados da outra tela
-        Intent intent = getIntent();
-        int codFunc = intent.getIntExtra("codFunc",0);
-
+        //Lista serviços-----------------------------------------
         ListaServico();
-
-        imgBtnVoltaHome1= (ImageButton)findViewById(R.id.imgBtnVoltaHome1);
-        imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Home = new Intent(getApplicationContext(), MainActivity.class);
-                Home.putExtra("codFunc",codFunc);
-                startActivity(Home);
-            }
-        });
 
         BtnAddServ= (ImageButton)findViewById(R.id.ImgBtnAddServ);
         BtnAddServ.setOnClickListener(new View.OnClickListener() {
@@ -77,26 +76,43 @@ public class ListaServ extends AppCompatActivity {
                 //manda cod func
                 intent.putExtra("codFunc", codFunc);
                 startActivity(intent);
-
             }
         });
     }
 
     //Lista de serviços
-    public void ListaServico(){
-        List<Servico> servicos = db.ListaTodosServicos();
+    public void ListaServico() {
+        //----------------------Lista serviços-------------------------
+        if (nomeTec==null || NivelConclusao==null) {
+            List<Servico> servicos = db.ListaTodosServicos();
 
-        arrayList= new ArrayList<String>();
-        adpater=new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-        listviewServ=(ListView)findViewById(R.id.listviewServ);
-        listviewServ.setAdapter(adpater);
+            arrayList = new ArrayList<String>();
+            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+            listviewServ = (ListView) findViewById(R.id.listviewServ);
+            listviewServ.setAdapter(adpater);
 
-        //loop para mostrar tudo
-        for(Servico c:servicos){
-            //corpo do item list
-            arrayList.add(c.getCodeServ()+ "-"+"Empresa: " +c.getNomeEmpresa()+"\n"+
-                    "Titulo: "+c.getTituloServ()+"\n"+ "Prazo: "+c.getPrazo()+"\n");
-            adpater.notifyDataSetChanged();
+            //loop para mostrar tudo
+            for (Servico c : servicos) {
+                //corpo do item list
+                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                adpater.notifyDataSetChanged();
+            }
+        } else {
+            List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao);
+
+            arrayList = new ArrayList<String>();
+            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+            listviewServ = (ListView) findViewById(R.id.listviewServ);
+            listviewServ.setAdapter(adpater);
+
+            //loop para mostrar tudo
+            for (Servico c : servicos) {
+                //corpo do item list
+                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                adpater.notifyDataSetChanged();
+            }
         }
     }
 }

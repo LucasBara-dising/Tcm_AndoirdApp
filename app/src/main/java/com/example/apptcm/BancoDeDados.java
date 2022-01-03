@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -144,6 +145,37 @@ public class BancoDeDados extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
 
         Cursor c =db.rawQuery(query,null);
+
+        if(c.moveToFirst()){
+            do{
+                Servico servico= new Servico();
+                servico.setCodeServ(Integer.parseInt(c.getString(0)));
+                servico.setNomeEmpresa(c.getString(1));
+                servico.setTituloServ(c.getString(2));
+                servico.setPrazo(c.getString(3));
+                servico.setDescServ(c.getString(4));
+                servico.setAreaServ(c.getString(5));
+                servico.setNivelConclusao(c.getString(6));
+
+                ListaServicos.add(servico);
+
+            }while (c.moveToNext());
+        }
+        return  ListaServicos;
+    }
+
+    //lista Todos projetos com palavra chave
+    public List<Servico> ListaTodosServicosComplvChave(String nomeTec,String NivelConclusao){
+        List<Servico>  ListaServicos= new ArrayList<Servico>();
+
+        //String query= "SELECT * FROM " + Tabela_servico+ " WHERE "+ Coluna_TituloServ +"= nomeProj" ;
+
+        SQLiteDatabase db=this.getWritableDatabase();
+        //Cursor c =db.rawQuery(query,null);
+
+        Cursor c=db.query(Tabela_servico,
+                new String[]{Coluna_CodServ, Coluna_NomeEmpresa, Coluna_TituloServ, Coluna_Prazo, Coluna_DescServ, Coluna_AreaServ,Coluna_NivelConclusao},
+                Coluna_AreaServ + "=? OR " + Coluna_NivelConclusao+ "=?",new String[]{nomeTec,NivelConclusao},null, null, null,null);
 
         if(c.moveToFirst()){
             do{

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Filtros">
+
+<ScrollView
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_marginStart="25dp"
+            android:text="@string/txtplvChave"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:autofillHints="@string/TxtProcurar"
+            android:background="@drawable/border_input"
+            android:backgroundTint="#F1F1F1"
+            android:hint="@string/txtBuscar"
+            android:inputType="textPersonName"/>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="27dp"
+            android:background="?android:attr/listDivider"/>
+
+        <TextView
+            android:id="@+id/txtView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/txtNivelConclusoa"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/filtroNivelConclusao"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:spinnerMode="dropdown" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:background="?android:attr/listDivider"/>
+
+
+        <TextView
+            android:id="@+id/txtView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/txtTecs"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/filtroTecUsada"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:spinnerMode="dropdown" />
+
+        <Button
+            android:id="@+id/btnFiltra"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/borda_aredondada"
+            android:backgroundTint="@color/Azul"
+            android:text="@string/txtBuscar"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+    <View
+        android:id="@+id/viewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/Azul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnFechaAdd"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fecha" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
