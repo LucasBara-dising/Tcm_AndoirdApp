@@ -56,16 +56,24 @@ public class ContaFunc extends AppCompatActivity {
             }
         });
 
+        //add func
         novoFunc= (Button)findViewById(R.id.novoFunc);
         novoFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent AddFunc = new Intent(getApplicationContext(), AddFunc.class);
-                AddFunc.putExtra("codFunc",codFunc);
-                startActivity(AddFunc);
+                if(funcionario.getCargoFunc().equals("Lider")){
+                    Intent AddFunc = new Intent(getApplicationContext(), AddFunc.class);
+                    AddFunc.putExtra("codFunc",codFunc);
+                    startActivity(AddFunc);
+                }
+                else{
+                    //mensagem de sem permissão
+                    Toast.makeText(ContaFunc.this, "Vocé não tem permissão para isso", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
+        //update conta
         updateConta= (Button)findViewById(R.id.updateConta);
         updateConta.setOnClickListener(new View.OnClickListener() {
             @Override

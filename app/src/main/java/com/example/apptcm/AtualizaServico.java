@@ -23,7 +23,7 @@ public class AtualizaServico extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atualiza_servico);
 
-        //dropdown
+        //dropdown nivel conclusão
         Spinner dropdownNivel=(Spinner)findViewById(R.id.dropdownNivel);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ItensDropdown));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -33,7 +33,13 @@ public class AtualizaServico extends AppCompatActivity {
         editTitulo=(EditText)findViewById(R.id.editTitulo);
         editTextDate=(EditText)findViewById(R.id.editTextDate);
         editDescserv=(EditText)findViewById(R.id.editDescserv);
-        editAreaserv=(EditText) findViewById(R.id.editAreaserv);
+
+
+//        //Dropdown tecnologias usadas
+        Spinner dropdownTecUsada=(Spinner) findViewById(R.id.dropdownTecUsada);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.TecUsadas));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownTecUsada.setAdapter(adapter1);
 
         //cod projeto
         Intent intent = getIntent();
@@ -50,7 +56,6 @@ public class AtualizaServico extends AppCompatActivity {
         editTitulo.setText(servico.getTituloServ());
         editTextDate.setText(servico.getPrazo());
         editDescserv.setText(servico.getDescServ());
-        editAreaserv.setText(servico.getAreaServ());
 
         btnAtualiza= (Button)findViewById(R.id.btnAtualiza);
         btnAtualiza.setOnClickListener(new View.OnClickListener() {

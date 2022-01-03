@@ -50,6 +50,7 @@
         android:id="@+id/editNomeEmpresa"
         style="@style/editText"
         android:inputType="textPersonName"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints" />
 
@@ -57,6 +58,7 @@
         android:id="@+id/editTitulo"
         style="@style/editText"
         android:inputType="textPersonName"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/editNomeEmpresa"
         tools:ignore="MissingConstraints" />
 
@@ -64,6 +66,7 @@
         android:id="@+id/editTextDate"
         style="@style/editText"
         android:inputType="date"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/editTitulo"
         tools:ignore="MissingConstraints" />
 
@@ -72,16 +75,21 @@
         android:id="@+id/editDescserv"
         style="@style/editText"
         android:inputType="textMultiLine"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editAreaserv"
-        style="@style/editText"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/editDescserv"
-        tools:ignore="MissingConstraints" />
-
+            <Spinner
+                android:id="@+id/dropdownTecUsada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="40dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editDescserv" />
 
             <Button
                 android:id="@+id/btnSalvar"
@@ -95,7 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editAreaserv" />
+                app:layout_constraintTop_toBottomOf="@+id/dropdownTecUsada" />
 
     <TextView
         android:id="@+id/textView3"
@@ -139,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:text="@string/TxtplatServ"
-        app:layout_constraintBottom_toTopOf="@+id/editAreaserv"
+        app:layout_constraintBottom_toTopOf="@+id/dropdownTecUsada"
         app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -31,7 +31,12 @@ public class AddServ extends AppCompatActivity {
         editTitulo=(EditText)findViewById(R.id.editTitulo);
         editTextDate=(EditText)findViewById(R.id.editTextDate);
         editDescserv=(EditText)findViewById(R.id.editDescserv);
-        editAreaserv=(EditText) findViewById(R.id.editAreaserv);
+
+        //Dropdown
+        Spinner dropdownTecUsada=(Spinner) findViewById(R.id.dropdownTecUsada);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.TecUsadas));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownTecUsada.setAdapter(adapter);
 
 
         ImageView btnFechaAdd = (ImageView) findViewById(R.id.btnFechaAdd);

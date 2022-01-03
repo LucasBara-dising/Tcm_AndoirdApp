@@ -60,6 +60,7 @@
         android:id="@+id/editEmailFunc"
         style="@style/editText"
         android:inputType="textEmailAddress"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="50dp" />
@@ -77,6 +78,7 @@
         android:id="@+id/editNomeFunc"
         style="@style/editText"
         android:inputType="textPersonName"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/editEmailFunc"
         tools:ignore="MissingConstraints" />
 
@@ -93,6 +95,7 @@
         android:id="@+id/editSenhaFunc"
         style="@style/editText"
         android:inputType="textPassword"
+        android:background="@drawable/border_input"
         app:layout_constraintTop_toBottomOf="@+id/editNomeFunc"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="50dp" />
@@ -114,6 +117,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="40dp"
         android:spinnerMode="dropdown"
+        android:background="@drawable/border_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editSenhaFunc" />

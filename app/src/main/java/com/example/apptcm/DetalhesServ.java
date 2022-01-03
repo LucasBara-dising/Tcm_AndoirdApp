@@ -38,6 +38,9 @@ public class DetalhesServ extends AppCompatActivity {
         Intent intent = getIntent();
         int codServ = intent.getIntExtra("codServ",0);
 
+        //seleciona
+        Funcionario funcionario= db.selecionarFunc(codFunc);
+
         Button btnPrazo=(Button)findViewById(R.id.btnPrazo);
 
         //volta pra lista
@@ -66,14 +69,17 @@ public class DetalhesServ extends AppCompatActivity {
         btnUpdateServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Atualizaserv = new Intent(getApplicationContext(), AtualizaServico.class);
-                Atualizaserv.putExtra("codFunc",codFunc);
-                startActivity(Atualizaserv);
-
-                //manda pra tela de update
-                Intent intent = new Intent(DetalhesServ.this, AtualizaServico.class);
-                intent.putExtra("codServ", codServ);
-                startActivity(intent);
+                if(funcionario.getCargoFunc().equals("Lider")){
+                    //manda cod Func e cod serv para outra tela
+                    Intent Atualizaserv = new Intent(DetalhesServ.this, AtualizaServico.class);
+                    Atualizaserv.putExtra("codFunc",codFunc);
+                    Atualizaserv.putExtra("codServ", codServ);
+                    startActivity(Atualizaserv);
+                }
+                else{
+                    //mensagem de sem permissão
+                    Toast.makeText(DetalhesServ.this, "Vocé não tem permissão para isso", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -83,16 +89,22 @@ public class DetalhesServ extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Servico servico=new Servico();
-                servico.setCodeServ(codServ);
-                //apaga
-                db.ApagaServ(servico);
-                //mensagem de sucesso
-                Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
+                if(funcionario.getCargoFunc().equals("Lider")){
+                    Servico servico=new Servico();
+                    servico.setCodeServ(codServ);
+                    //apaga
+                    db.ApagaServ(servico);
+                    //mensagem de sucesso
+                    Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
 
-                Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                ListServ.putExtra("codFunc",codFunc);
-                startActivity(ListServ);
+                    Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                    ListServ.putExtra("codFunc",codFunc);
+                    startActivity(ListServ);
+
+                }else{
+                    //mensagem de sem permissão
+                    Toast.makeText(DetalhesServ.this, "Vocé não tem permissão para isso", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -26,7 +26,7 @@
 
 
     <!--    Tela add Serv-->
-    <string name="TxtAddServ">Adiconar Serviço</string>
+    <string name="TxtAddServ">Adiconar Projeto</string>
     <string name="TxtNomeEmpresa">Nome da empresa</string>
     <string name="TxtTitulo">Titulo</string>
     <string name="TxtPrazo">Prazo</string>
@@ -42,6 +42,7 @@
     <string name="txtUpdateServ">Atualizar</string>
     <string name="txtDeleteServ">Excluir</string>
     <string name="TxtDescEvento">Descrição</string>
+    <string name="txtNivelConclusoa">Nivel de Conclusão</string>
 
 
     <!-- desc img-->
@@ -59,5 +60,14 @@
     <string-array name="CargosFunc">
         <item>Funcionario</item>
         <item>Lider</item>
+    </string-array>
+
+    <string-array name="TecUsadas">
+        <item>Html Css</item>
+        <item>PHP</item>
+        <item>Asp.net</item>
+        <item>Android/Ios</item>
+        <item>Servidor</item>
+        <item>Java</item>
     </string-array>
 </resources>
