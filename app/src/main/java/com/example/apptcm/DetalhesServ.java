@@ -3,7 +3,9 @@ package com.example.apptcm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,8 +33,8 @@ public class DetalhesServ extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_serv);
 
         //recebe  cod func
-        Intent intent1 = getIntent();
-        int codFunc = intent1.getIntExtra("codFunc",0);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("SalvaCodfunc", Context.MODE_PRIVATE);
+        int codFunc = preferences.getInt("codFunc", 1);
 
         //recebe cod prod
         Intent intent = getIntent();
@@ -49,7 +51,6 @@ public class DetalhesServ extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                ListServ.putExtra("codFunc",codFunc);
                 startActivity(ListServ);
             }
         });
@@ -72,7 +73,6 @@ public class DetalhesServ extends AppCompatActivity {
                 if(funcionario.getCargoFunc().equals("Lider")){
                     //manda cod Func e cod serv para outra tela
                     Intent Atualizaserv = new Intent(DetalhesServ.this, AtualizaServico.class);
-                    Atualizaserv.putExtra("codFunc",codFunc);
                     Atualizaserv.putExtra("codServ", codServ);
                     startActivity(Atualizaserv);
                 }
@@ -98,7 +98,6 @@ public class DetalhesServ extends AppCompatActivity {
                     Toast.makeText(DetalhesServ.this, "Serviço Foi Deletado ", Toast.LENGTH_LONG).show();
 
                     Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                    ListServ.putExtra("codFunc",codFunc);
                     startActivity(ListServ);
 
                 }else{

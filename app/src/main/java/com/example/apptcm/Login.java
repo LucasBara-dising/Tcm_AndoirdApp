@@ -2,15 +2,21 @@ package com.example.apptcm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
@@ -24,15 +30,20 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //define SharedPreferences
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("SalvaCodfunc", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         //adciona o user adm
         //db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
+
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
         editUserLogin = (EditText) findViewById(R.id.editUserLogin);
         EditSenhaLogin = (EditText) findViewById(R.id.EditSenhaLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
                 //recebe os valores dos editText
                 String login = editUserLogin.getText().toString();
                 String senha = EditSenhaLogin.getText().toString();
@@ -43,21 +54,28 @@ public class Login extends AppCompatActivity {
                 }
 
                 else{
-                    //valida o login e senha
-                    Funcionario funcionario= db.ValidaFunc(login,senha);
+                    //verifica quantos user exitem
+                    int NumeroUsers =db.numeroDeUsers(login,senha);
 
-                    //se for valido
-                    if(funcionario !=null){
+                    //se tiver mais que um user, valida
+                    if(NumeroUsers>0){
+                        //valida o login e senha
+                        Funcionario funcionario= db.ValidaFunc(login,senha);
+
                         int codFunc=funcionario.getIdFunc();
+
+                        //salvando cod na memoria
+                        editor.putInt("codFunc",codFunc);
+                        editor.apply();
 
                         //mandando o cod para tela de conta e abrindo tela conta
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("codFunc",codFunc);
                         startActivity(intent);
-                    }
 
+                    }
+                    //se não tiver nme um user exibe mensagem
                     else{
-                        Toast.makeText(Login.this, "Login E Senha não existe", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this, "Login ou Senha não existe", Toast.LENGTH_LONG).show();
                     }
                 }
             }

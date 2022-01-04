@@ -1,20 +1,13 @@
 package com.example.apptcm;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BancoDeDados extends SQLiteOpenHelper {
@@ -168,10 +161,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
     public List<Servico> ListaTodosServicosComplvChave(String nomeTec,String NivelConclusao){
         List<Servico>  ListaServicos= new ArrayList<Servico>();
 
-        //String query= "SELECT * FROM " + Tabela_servico+ " WHERE "+ Coluna_TituloServ +"= nomeProj" ;
-
         SQLiteDatabase db=this.getWritableDatabase();
-        //Cursor c =db.rawQuery(query,null);
 
         Cursor c=db.query(Tabela_servico,
                 new String[]{Coluna_CodServ, Coluna_NomeEmpresa, Coluna_TituloServ, Coluna_Prazo, Coluna_DescServ, Coluna_AreaServ,Coluna_NivelConclusao},
@@ -195,6 +185,14 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return  ListaServicos;
     }
 
+    //conta todos os projetos
+    public int NumDeProjetos(String nomeTec,String NivelConclusao) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        int NumProj = (int) DatabaseUtils.queryNumEntries(db, Tabela_servico,Coluna_AreaServ+"=? AND "+ Coluna_NivelConclusao+ "=?" ,new String[]{nomeTec,NivelConclusao});
+        return NumProj;
+    }
+
 
 
     //=================================Funcionario=====================
@@ -202,17 +200,25 @@ public class BancoDeDados extends SQLiteOpenHelper {
     //Valida func
     public Funcionario ValidaFunc(String email, String senha){
 
-        SQLiteDatabase db=this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor=db.query(Tabela_Funcionario,
                 new String[]{(Coluna_idFunc)},
                 Coluna_EmailFunc+"=? AND "+ Coluna_SenhaFunc+ "=?" ,new String[]{email,senha},null, null, null, String.valueOf(1));
+
         if(cursor!=null && cursor.getCount()>0){
             cursor.moveToFirst();
-            int FuncVazio=0;
         }
 
         return new Funcionario(Integer.parseInt(cursor.getString(0)));
+    }
+
+    //conta users
+    public int numeroDeUsers(String email, String senha) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        int numUsers = (int) DatabaseUtils.queryNumEntries(db, Tabela_Funcionario,Coluna_EmailFunc+"=? AND "+ Coluna_SenhaFunc+ "=?" ,new String[]{email,senha});
+        return numUsers;
     }
 
     //Insert func

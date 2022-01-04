@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">App Tcm</string>
     <string name="TxtCategorias">Categorias</string>
-    <string name="TxtServ">Serviços</string>
+    <string name="TxtServ">Projeto</string>
     <string name="txtSistema">Sistemas</string>
     <string name="txtAplicativo">Aplicativo</string>
     <string name="TxtProcurar">Buscar...</string>
@@ -31,7 +31,7 @@
     <string name="TxtTitulo">Titulo</string>
     <string name="TxtPrazo">Prazo</string>
     <string name="TxtDescServ">Descrição</string>
-    <string name="TxtplatServ">Plataforma do serviço</string>
+    <string name="TxtplatServ">Plataforma do Projeto</string>
     <string name="TxtSalvar">Salvar</string>
 
     <!--    Tela Update func-->
@@ -43,6 +43,7 @@
     <string name="txtDeleteServ">Excluir</string>
     <string name="TxtDescEvento">Descrição</string>
     <string name="txtNivelConclusoa">Nivel de Conclusão</string>
+    <string name="txtVazio">Puts não acamos nada...</string>
 
     <!--Filtro -->
     <string name="txtBuscar">Buscar</string>
@@ -61,6 +62,7 @@
     <string name="descImgRelogio">Img De relogio</string>
 
     <string-array name="ItensDropdown">
+        <item> </item>
         <item>Em Andamento</item>
         <item>Terminado</item>
         <item>Não iniciado</item>
@@ -74,6 +76,7 @@
     </string-array>
 
     <string-array name="TecUsadas">
+        <item> </item>
         <item>Html Css</item>
         <item>PHP</item>
         <item>Asp.net</item>

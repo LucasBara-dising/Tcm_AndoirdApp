@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -25,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //recebe os dados da outra tela
-        Intent intent = getIntent();
-        int codFunc = intent.getIntExtra("codFunc",0);
-
         //instancianod giroscopio
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -38,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                ListServ.putExtra("codFunc",codFunc);
                 startActivity(ListServ);
             }
         });
@@ -48,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-                Conta.putExtra("codFunc",codFunc);
                 startActivity(Conta);
             }
         });
@@ -58,18 +53,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Filtro = new Intent(getApplicationContext(), Filtros.class);
-                Filtro.putExtra("codFunc",codFunc);
                 startActivity(Filtro);
             }
         });
-
 
         Button btnServ = (Button) findViewById(R.id.btnServ);
         btnServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                ListServ.putExtra("codFunc",codFunc);
                 startActivity(ListServ);
             }
         });
@@ -79,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-                Conta.putExtra("codFunc",codFunc);
                 startActivity(Conta);
             }
         });

@@ -35,7 +35,7 @@ public class AtualizaServico extends AppCompatActivity {
         editDescserv=(EditText)findViewById(R.id.editDescserv);
 
 
-//        //Dropdown tecnologias usadas
+        //Dropdown tecnologias usadas
         Spinner dropdownTecUsada=(Spinner) findViewById(R.id.dropdownTecUsada);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.TecUsadas));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,10 +44,6 @@ public class AtualizaServico extends AppCompatActivity {
         //cod projeto
         Intent intent = getIntent();
         int CodigoServ = intent.getIntExtra("codServ",0);
-
-        //recebe dados cod func
-        Intent intent1 = getIntent();
-        int codFunc = intent1.getIntExtra("codFunc",0);
 
         Servico servico= db.selecionarServico(CodigoServ);
 
@@ -70,11 +66,10 @@ public class AtualizaServico extends AppCompatActivity {
                 String NivelConclusao=dropdownNivel.getSelectedItem().toString();
 
                 //update
-                    db.updateServ(new Servico(Integer.parseInt(String.valueOf(CodigoServ)),nomeEmpresa, titulo,prazo, descricao,areaTrab,NivelConclusao));
+                db.updateServ(new Servico(Integer.parseInt(String.valueOf(CodigoServ)),nomeEmpresa, titulo,prazo, descricao,areaTrab,NivelConclusao));
                     //mensagem de sucesso
-                    Toast.makeText(AtualizaServico.this, "Serviço Atualizado ", Toast.LENGTH_LONG).show();
+                Toast.makeText(AtualizaServico.this, "Serviço Atualizado ", Toast.LENGTH_LONG).show();
                 Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
-                Lista.putExtra("codFunc",codFunc);
                 startActivity(Lista);
             }
         });
@@ -84,7 +79,6 @@ public class AtualizaServico extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
-                Lista.putExtra("codFunc",codFunc);
                 startActivity(Lista);
             }
         });

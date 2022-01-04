@@ -69,14 +69,17 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:backgroundTint="#F1F1F1"
+            android:background="@drawable/border_input"/>
 
         <View
             android:id="@+id/divider2"
             android:layout_width="409dp"
             android:layout_height="1dp"
             android:layout_marginTop="25dp"
-            android:background="?android:attr/listDivider"/>
+            android:background="?android:attr/listDivider"
+             />
 
 
         <TextView
@@ -95,7 +98,9 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:backgroundTint="#F1F1F1"
+            android:background="@drawable/border_input"/>
 
         <Button
             android:id="@+id/btnFiltra"

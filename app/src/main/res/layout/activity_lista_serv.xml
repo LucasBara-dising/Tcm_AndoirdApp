@@ -75,6 +75,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imgFiltro"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/TxtEdtPesquisa"
+            app:layout_constraintTop_toBottomOf="@+id/ImgBtnAddServ"
+            app:srcCompat="@drawable/ajuste_de_contraste" />
 
         <TextView
             android:id="@+id/txtView46"
@@ -89,18 +99,31 @@
             app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
 
         <TextView
-            android:id="@+id/txtViewText"
+            android:id="@+id/txtVazio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-30dp"
-            android:text=""
+            android:layout_marginTop="20dp"
+            android:text="@string/txtVazio"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/imgVazio" />
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imgVazio"
+            android:layout_width="254dp"
+            android:layout_height="266dp"
+            android:layout_marginTop="250dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search_rafiki" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 
     <ListView

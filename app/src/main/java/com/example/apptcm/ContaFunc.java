@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,9 +34,8 @@ public class ContaFunc extends AppCompatActivity {
         setContentView(R.layout.activity_conta_func);
 
         //recebe os dados da outra tela
-        Intent intent = getIntent();
-        int codFunc = intent.getIntExtra("codFunc",0);
-
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("SalvaCodfunc", Context.MODE_PRIVATE);
+        int codFunc = preferences.getInt("codFunc", 1);
 
         //faz o select para mostrar o nome e o emial do user
         Funcionario funcionario= db.selecionarFunc(codFunc);
@@ -51,7 +51,6 @@ public class ContaFunc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent home = new Intent(getApplicationContext(), MainActivity.class);
-                home.putExtra("codFunc",codFunc);
                 startActivity(home);
             }
         });
@@ -63,7 +62,6 @@ public class ContaFunc extends AppCompatActivity {
             public void onClick(View v) {
                 if(funcionario.getCargoFunc().equals("Lider")){
                     Intent AddFunc = new Intent(getApplicationContext(), AddFunc.class);
-                    AddFunc.putExtra("codFunc",codFunc);
                     startActivity(AddFunc);
                 }
                 else{
@@ -79,7 +77,6 @@ public class ContaFunc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent UpdadeServ = new Intent(getApplicationContext(), AtualizarFunc.class);
-                UpdadeServ.putExtra("codFunc",codFunc);
                 startActivity(UpdadeServ);
             }
         });
@@ -97,9 +94,9 @@ public class ContaFunc extends AppCompatActivity {
     //vai salvar alguns dados do user
     public void salvar() {
         try {
-            //recebe o codigo
-            Intent intent = getIntent();
-            int codFunc = intent.getIntExtra("codFunc",0);
+            //recebe os dados da outra tela
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences("SalvaCodfunc", Context.MODE_PRIVATE);
+            int codFunc = preferences.getInt("codFunc", 1);
 
             //seleciona
             Funcionario funcionario= db.selecionarFunc(codFunc);
@@ -109,8 +106,6 @@ public class ContaFunc extends AppCompatActivity {
             String Dados = "Nome: " + funcionario.getNomeFunc() + "\n" +"Email: " + funcionario.getEmailFunc();
             //grava na memoria
             fos.write(Dados.getBytes());
-            //Mensagem de sucesso
-            Toast.makeText(ContaFunc.this, "seus dados foram salvos", Toast.LENGTH_SHORT).show();
             fos.close();
 
             //le os dados gravados
@@ -121,6 +116,9 @@ public class ContaFunc extends AppCompatActivity {
             while ((i = fis.read()) != -1) {
                 DadoFund = DadoFund + (char) i;
             }
+            fis.close();
+            //Mensagem de sucesso
+            Toast.makeText(ContaFunc.this, DadoFund, Toast.LENGTH_SHORT).show();
 
         } catch (IOException e) {
             e.printStackTrace();

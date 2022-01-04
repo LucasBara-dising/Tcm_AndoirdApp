@@ -74,7 +74,6 @@ public class AtualizarFunc extends AppCompatActivity {
                     Toast.makeText(AtualizarFunc.this, "Funcionario Atualizado ", Toast.LENGTH_LONG).show();
                     //leva pra tela conta
                     Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-                    Conta.putExtra("codFunc",codFunc);
                     startActivity(Conta);
             }
         });

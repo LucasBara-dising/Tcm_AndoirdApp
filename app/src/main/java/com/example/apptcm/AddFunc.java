@@ -58,7 +58,6 @@ public class AddFunc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-                Conta.putExtra("codFunc",codFunc);
                 startActivity(Conta);
             }
         });
@@ -102,7 +101,6 @@ public class AddFunc extends AppCompatActivity {
                     Toast.makeText(AddFunc.this, "Funcionario adicionado ", Toast.LENGTH_LONG).show();
                     //manda pra tela conta
                     Intent Conta = new Intent(getApplicationContext(), ContaFunc.class);
-                    Conta.putExtra("codFunc",codFunc);
                     startActivity(Conta);
                 }
             }

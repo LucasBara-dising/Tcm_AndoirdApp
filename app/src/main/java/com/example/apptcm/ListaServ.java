@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,33 +26,92 @@ public class ListaServ extends AppCompatActivity {
     ArrayAdapter<String> adpater;
     ArrayList<String> arrayList;
 
-    //recebe os dados da outra tela
-    Intent intent = getIntent();
-    int codFunc = intent.getIntExtra("codFunc",0);
-
-    //nivel conclusão
-    Intent intent1 = getIntent();
-    String NivelConclusao = String.valueOf(intent1.getIntExtra("NivelConclusao",0));
-
-    //nivel conslução
-    Intent intent2 = getIntent();
-    String nomeTec = String.valueOf(intent2.getIntExtra("areaTrab",0));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_serv);
 
-        //Lista serviços-----------------------------------------
-        ListaServico();
+
+       //nivel conclusão
+        Intent intent1 = getIntent();
+        String NivelConclusao =intent1.getStringExtra("NivelConclusao");
+
+       //nivel conslução
+        Intent intent2 = getIntent();
+        String nomeTec = intent2.getStringExtra("areaTrab");
+
+        //recebe os dados da outra tela
+        Intent intent3 = getIntent();
+        int ativa = intent3.getIntExtra("ativa",0);
+
+
+        //----------------------Lista serviços-------------------------
+        if (ativa==0) {
+            List<Servico> servicos = db.ListaTodosServicos();
+
+            arrayList = new ArrayList<String>();
+            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+            listviewServ = (ListView) findViewById(R.id.listviewServ);
+            listviewServ.setAdapter(adpater);
+
+            //loop para mostrar tudo
+            for (Servico c : servicos) {
+                //corpo do item list
+                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                adpater.notifyDataSetChanged();
+            }
+        } else {
+            int NumeroUsers =db.NumDeProjetos(nomeTec,NivelConclusao);
+            if(NumeroUsers==0){
+                List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao);
+
+                arrayList = new ArrayList<String>();
+                adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+                listviewServ = (ListView) findViewById(R.id.listviewServ);
+                listviewServ.setAdapter(adpater);
+
+                //loop para mostrar tudo
+                for (Servico c : servicos) {
+                    //corpo do item list
+                    arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                            "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                    adpater.notifyDataSetChanged();
+                }
+            }else{
+                ImageView imgVazio = (ImageView) findViewById(R.id.imgVazio);
+                imgVazio.setVisibility(View.VISIBLE);
+
+                TextView txtVazio = (TextView) findViewById(R.id.txtVazio);
+                txtVazio.setVisibility(View.VISIBLE);
+            }
+        }
 
         BtnAddServ= (ImageButton)findViewById(R.id.ImgBtnAddServ);
         BtnAddServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent AddServ = new Intent(getApplicationContext(), AddServ.class);
-                AddServ.putExtra("codFunc",codFunc);
                 startActivity(AddServ);
+            }
+        });
+
+        imgBtnVoltaHome1= (ImageButton)findViewById(R.id.imgBtnVoltaHome1);
+        imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent AddServ = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(AddServ);
+            }
+        });
+
+        ImageView imgFiltro = (ImageView) findViewById(R.id.imgFiltro);
+        imgFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Filtro = new Intent(getApplicationContext(), Filtros.class);
+                startActivity(Filtro);
             }
         });
 
@@ -73,46 +133,9 @@ public class ListaServ extends AppCompatActivity {
                 //manda o cod pra tela de detalhes
                 Intent intent = new Intent(ListaServ.this, DetalhesServ.class);
                 intent.putExtra("codServ", codServ);
-                //manda cod func
-                intent.putExtra("codFunc", codFunc);
                 startActivity(intent);
             }
         });
     }
 
-    //Lista de serviços
-    public void ListaServico() {
-        //----------------------Lista serviços-------------------------
-        if (nomeTec==null || NivelConclusao==null) {
-            List<Servico> servicos = db.ListaTodosServicos();
-
-            arrayList = new ArrayList<String>();
-            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-            listviewServ = (ListView) findViewById(R.id.listviewServ);
-            listviewServ.setAdapter(adpater);
-
-            //loop para mostrar tudo
-            for (Servico c : servicos) {
-                //corpo do item list
-                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
-                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
-                adpater.notifyDataSetChanged();
-            }
-        } else {
-            List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao);
-
-            arrayList = new ArrayList<String>();
-            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-            listviewServ = (ListView) findViewById(R.id.listviewServ);
-            listviewServ.setAdapter(adpater);
-
-            //loop para mostrar tudo
-            for (Servico c : servicos) {
-                //corpo do item list
-                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
-                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
-                adpater.notifyDataSetChanged();
-            }
-        }
-    }
 }

@@ -23,9 +23,6 @@ public class AddServ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_serv);
 
-        //recebe os dados da outra tela
-        Intent intent = getIntent();
-        int codFunc = intent.getIntExtra("codFunc",0);
 
         editNomeEmpresa= (EditText)findViewById(R.id.editNomeEmpresa);
         editTitulo=(EditText)findViewById(R.id.editTitulo);
@@ -44,7 +41,6 @@ public class AddServ extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                ListServ.putExtra("codFunc",codFunc);
                 startActivity(ListServ);
             }
         });
@@ -59,7 +55,7 @@ public class AddServ extends AppCompatActivity {
                 String titulo=editTitulo.getText().toString();
                 String prazo=editTextDate.getText().toString();
                 String descricao=editDescserv.getText().toString();
-                String areaTrab=editAreaserv.getText().toString();
+                String areaTrab=dropdownTecUsada.getSelectedItem().toString();
 
 
                 //se tiver algum vazio mostrra erro
@@ -74,7 +70,6 @@ public class AddServ extends AppCompatActivity {
                     Toast.makeText(AddServ.this, "Serviço adicionado ", Toast.LENGTH_LONG).show();
 
                     Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
-                    ListServ.putExtra("codFunc",codFunc);
                     startActivity(ListServ);
                 }
             }
