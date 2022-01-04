@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -30,8 +31,8 @@ public class Filtros extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filtroTecUsada.setAdapter(adapter1);
 
-
-
+        EditText editPalavraChave=(EditText)findViewById(R.id.editPalavraChave);
+        String PlvChave = editPalavraChave.getText().toString();
 
         ImageView btnFechaAdd= (ImageView)findViewById(R.id.btnFechaAdd);
         btnFechaAdd.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +50,14 @@ public class Filtros extends AppCompatActivity {
                 int ativa=1;
                 String areaTrab=filtroTecUsada.getSelectedItem().toString();
                 String NivelConclusao= dropdownNivel.getSelectedItem().toString();
+                String PlvChave = editPalavraChave.getText().toString();
 
                 Intent Lista = new Intent(getApplicationContext(), ListaServ.class);
                 Lista.putExtra("areaTrab",areaTrab);
                 Lista.putExtra("NivelConclusao",NivelConclusao);
+                Lista.putExtra("PlvChave",PlvChave);
                 Lista.putExtra("ativa",ativa);
+
                 startActivity(Lista);
             }
         });

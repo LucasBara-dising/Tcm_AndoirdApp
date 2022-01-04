@@ -157,15 +157,42 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return  ListaServicos;
     }
 
-    //lista Todos projetos com palavra chave
-    public List<Servico> ListaTodosServicosComplvChave(String nomeTec,String NivelConclusao){
+    //lista Todos por palavra
+    public List<Servico> ListaTodosServicosComFiltro(String nomeTec,String NivelConclusao,String nomeProj){
+        List<Servico>  ListaServicos= new ArrayList<Servico>();
+
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        Cursor c =db.rawQuery("SELECT * FROM " + Tabela_servico + " Where " + Coluna_AreaServ + "=? OR "+ Coluna_NivelConclusao+ "=? OR " + Coluna_TituloServ + " like ?", new String[]{nomeTec, NivelConclusao, "%" + nomeProj + "%" });
+
+        if(c.moveToFirst()){
+            do{
+                Servico servico= new Servico();
+                servico.setCodeServ(Integer.parseInt(c.getString(0)));
+                servico.setNomeEmpresa(c.getString(1));
+                servico.setTituloServ(c.getString(2));
+                servico.setPrazo(c.getString(3));
+                servico.setDescServ(c.getString(4));
+                servico.setAreaServ(c.getString(5));
+                servico.setNivelConclusao(c.getString(6));
+
+                ListaServicos.add(servico);
+
+            }while (c.moveToNext());
+        }
+        return  ListaServicos;
+    }
+
+
+//    //lista Todos projetos com filtro
+    public List<Servico> ListaTodosServicosComplvChave(String nomeTec,String NivelConclusao,String nomeProj){
         List<Servico>  ListaServicos= new ArrayList<Servico>();
 
         SQLiteDatabase db=this.getWritableDatabase();
 
         Cursor c=db.query(Tabela_servico,
                 new String[]{Coluna_CodServ, Coluna_NomeEmpresa, Coluna_TituloServ, Coluna_Prazo, Coluna_DescServ, Coluna_AreaServ,Coluna_NivelConclusao},
-                Coluna_AreaServ + "=? OR " + Coluna_NivelConclusao+ "=?",new String[]{nomeTec,NivelConclusao},null, null, null,null);
+                Coluna_AreaServ + "=? OR " + Coluna_NivelConclusao+ "=? OR " + Coluna_TituloServ + " LIKE ?",new String[]{nomeTec,NivelConclusao, "%" + nomeProj + "%" },null, null, null,null);
 
         if(c.moveToFirst()){
             do{
@@ -186,10 +213,10 @@ public class BancoDeDados extends SQLiteOpenHelper {
     }
 
     //conta todos os projetos
-    public int NumDeProjetos(String nomeTec,String NivelConclusao) {
+    public int NumDeProjetos(String nomeTec,String NivelConclusao,String nomeProj) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        int NumProj = (int) DatabaseUtils.queryNumEntries(db, Tabela_servico,Coluna_AreaServ+"=? AND "+ Coluna_NivelConclusao+ "=?" ,new String[]{nomeTec,NivelConclusao});
+        int NumProj = (int) DatabaseUtils.queryNumEntries(db, Tabela_servico,Coluna_AreaServ + "=? OR "+ Coluna_NivelConclusao+ "=? OR " + Coluna_TituloServ + " like ?", new String[]{nomeTec, NivelConclusao, "%" + nomeProj + "%" });
         return NumProj;
     }
 

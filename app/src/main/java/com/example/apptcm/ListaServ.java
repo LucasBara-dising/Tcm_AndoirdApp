@@ -37,14 +37,17 @@ public class ListaServ extends AppCompatActivity {
         Intent intent1 = getIntent();
         String NivelConclusao =intent1.getStringExtra("NivelConclusao");
 
-       //nivel conslução
+       //Tecnlogia usada
         Intent intent2 = getIntent();
         String nomeTec = intent2.getStringExtra("areaTrab");
 
-        //recebe os dados da outra tela
+        //Palavra chave
         Intent intent3 = getIntent();
-        int ativa = intent3.getIntExtra("ativa",0);
+        String nomeProj = intent3.getStringExtra("PlvChave");
 
+        //recebe os dados da outra tela
+        Intent intent4 = getIntent();
+        int ativa = intent4.getIntExtra("ativa",0);
 
         //----------------------Lista serviços-------------------------
         if (ativa==0) {
@@ -63,9 +66,11 @@ public class ListaServ extends AppCompatActivity {
                 adpater.notifyDataSetChanged();
             }
         } else {
-            int NumeroUsers =db.NumDeProjetos(nomeTec,NivelConclusao);
-            if(NumeroUsers==0){
-                List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao);
+            int NumeroUsers =db.NumDeProjetos(nomeTec,NivelConclusao,nomeProj);
+            Toast.makeText(ListaServ.this, "Num:  "+NumeroUsers, Toast.LENGTH_LONG).show();
+            if(NumeroUsers>0){
+
+                List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao,nomeProj);
 
                 arrayList = new ArrayList<String>();
                 adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
@@ -79,7 +84,8 @@ public class ListaServ extends AppCompatActivity {
                             "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
                     adpater.notifyDataSetChanged();
                 }
-            }else{
+            }
+            else{
                 ImageView imgVazio = (ImageView) findViewById(R.id.imgVazio);
                 imgVazio.setVisibility(View.VISIBLE);
 

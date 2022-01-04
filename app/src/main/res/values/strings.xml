@@ -43,7 +43,7 @@
     <string name="txtDeleteServ">Excluir</string>
     <string name="TxtDescEvento">Descrição</string>
     <string name="txtNivelConclusoa">Nivel de Conclusão</string>
-    <string name="txtVazio">Puts não acamos nada...</string>
+    <string name="txtVazio">Puts não achamos nada...</string>
 
     <!--Filtro -->
     <string name="txtBuscar">Buscar</string>
