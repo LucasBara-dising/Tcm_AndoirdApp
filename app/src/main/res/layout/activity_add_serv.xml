@@ -70,8 +70,18 @@
         app:layout_constraintTop_toBottomOf="@+id/editTitulo"
         tools:ignore="MissingConstraints" />
 
+            <ImageView
+                android:id="@+id/imgCalender"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:padding="15dp"
+                android:layout_marginEnd="-15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
+                app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+                app:layout_constraintTop_toTopOf="@+id/editTextDate"
+                app:srcCompat="@drawable/calendario" />
 
-    <EditText
+            <EditText
         android:id="@+id/editDescserv"
         style="@style/editText"
         android:inputType="textMultiLine"
@@ -81,12 +91,12 @@
 
             <Spinner
                 android:id="@+id/dropdownTecUsada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                style="@style/editText"
+                android:layout_height="40dp"
+                android:padding="2dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="40dp"
                 android:spinnerMode="dropdown"
+                android:background="@drawable/border_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editDescserv" />

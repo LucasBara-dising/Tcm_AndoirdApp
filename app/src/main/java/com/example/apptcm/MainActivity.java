@@ -1,19 +1,29 @@
 package com.example.apptcm;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     //giroscopio
     SensorManager sensorManager;
     Sensor sensor;
+
+    ArrayList<String> projetoId, projetoTitulo, ProjetoEmpresa, tecUsada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(ListServ);
             }
         });
+
 
         ImageView ImgBtnConta = (ImageView) findViewById(R.id.ImgBtnConta);
         ImgBtnConta.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +89,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+//============================== TENTATIVA DE COLOCAR RECYCLER==============================
+    //        projetoId= new ArrayList<>();
+//        projetoTitulo= new ArrayList<>();
+//        ProjetoEmpresa= new ArrayList<>();
+//        tecUsada= new ArrayList<>();
+
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//
+//        RecyclerViewAdapter adpter= new RecyclerViewAdapter(MainActivity.this, projetoId, projetoTitulo, ProjetoEmpresa, tecUsada);
+//        recyclerView.setAdapter(adpter);
+
+
+    //configurarRecycler();
+
+    /* void Mostradados() {
+        BancoDeDados db=new BancoDeDados(this);
+        Cursor cursor = db. mostraDadosHome();
+
+        if(cursor.getCount()==0){
+            Toast.makeText(this, "sem dados", Toast.LENGTH_SHORT).show();
+        }else{
+            while (cursor.moveToNext()){
+                ProjetoEmpresa.add(cursor.getString(1));
+                projetoTitulo.add(cursor.getString(2));
+                tecUsada.add(cursor.getString(5));
+            }
+        }
+    }
+
+    private void configurarRecycler() {
+        // Configurando o gerenciador de layout para ser uma lista.
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        // Adiciona o adapter que irá anexar os objetos à lista.
+        BancoDeDados db=new BancoDeDados(this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter();
+        recyclerView.setAdapter(adapter);
+    }*/
 
     //dados do sensor
     public void onResume() {

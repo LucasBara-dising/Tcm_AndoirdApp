@@ -77,16 +77,16 @@
                 app:srcCompat="@drawable/ajuste_de_contraste" />
 
             <TextView
-        android:id="@+id/txtView46"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/TxtCategorias"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
+                android:id="@+id/txtView46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/TxtCategorias"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
 
     <Button
         android:id="@+id/btnServ"
@@ -113,6 +113,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtView46" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

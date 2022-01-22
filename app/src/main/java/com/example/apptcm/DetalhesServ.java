@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,10 +45,8 @@ public class DetalhesServ extends AppCompatActivity {
         //seleciona
         Funcionario funcionario= db.selecionarFunc(codFunc);
 
-        Button btnPrazo=(Button)findViewById(R.id.btnPrazo);
-
         //volta pra lista
-        ImageButton imgBtnVoltaHome1=(ImageButton)findViewById(R.id.imgBtnVoltaHome1);
+        ImageView imgBtnVoltaHome1=(ImageView)findViewById(R.id.imgBtnVoltaHome1);
         imgBtnVoltaHome1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class DetalhesServ extends AppCompatActivity {
 
 
         //salva no armazenamneto
-        ImageButton imgBtnsalva=(ImageButton)findViewById(R.id.imgBtnsalva);
+        ImageView imgBtnsalva=(ImageView)findViewById(R.id.imgBtnsalva);
         imgBtnsalva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,41 +121,39 @@ public class DetalhesServ extends AppCompatActivity {
         txtViewTitulo.setText(servico.getTituloServ());
         txtViewEmpresa.setText(servico.getNomeEmpresa());
         txtViewDesc.setText(servico.getPrazo());
-        txtViewArea.setText("Linguagem Usada: "+servico.getAreaServ());
+        txtViewArea.setText("Linguagem Usada: " + servico.getAreaServ());
         txtViewPrazo.setText(servico.getDescServ());
 
         String nivelConclusao=servico.getNivelConclusao();
 
+        TextView txtPrazo=(TextView) findViewById(R.id.txtPrazo);
+        View viewNivelConclusão=(View) findViewById(R.id.viewNivelConclusão);
+
         //switch para definir a cor do btn de nivel de conclusão
         switch (nivelConclusao){
             case "Terminado":
-                btnPrazo.setBackgroundColor(Color.parseColor("#42f575"));
-                btnPrazo.setTextColor(Color.parseColor("#ffffff"));
-                btnPrazo.setText("Terminado");
+                viewNivelConclusão.setBackgroundColor(Color.parseColor("#5CB85C"));
+                txtPrazo.setText("Terminado");
                 break;
 
             case "Não iniciado":
-                btnPrazo.setBackgroundColor(Color.parseColor("#595555"));
-                btnPrazo.setTextColor(Color.parseColor("#ffffff"));
-                btnPrazo.setText("Não iniciado");
+                viewNivelConclusão.setBackgroundColor(Color.parseColor("#595555"));
+                txtPrazo.setText("Não iniciado");
                 break;
 
             case "Em Andamento":
-                btnPrazo.setBackgroundColor(Color.parseColor("#d6cb33"));
-                btnPrazo.setTextColor(Color.parseColor("#ffffff"));
-                btnPrazo.setText("Em Andamento");
+                viewNivelConclusão.setBackgroundColor(Color.parseColor("#156C9A"));
+                txtPrazo.setText("Em andamento");
                 break;
 
             case "Prazo Proximo":
-                btnPrazo.setBackgroundColor(Color.parseColor("#db851d"));
-                btnPrazo.setTextColor(Color.parseColor("#ffffff"));
-                btnPrazo.setText("Prazo Proximo");
+                viewNivelConclusão.setBackgroundColor(Color.parseColor("#F0AD4E"));
+                txtPrazo.setText("Prazo proximo");
                 break;
 
             case "Atrasado":
-                btnPrazo.setBackgroundColor(Color.parseColor("#db261d"));
-                btnPrazo.setTextColor(Color.parseColor("#ffffff"));
-                btnPrazo.setText("Atrasado");
+                viewNivelConclusão.setBackgroundColor(Color.parseColor("#D9534F"));
+                txtPrazo.setText("Atrasado");
                 break;
         }
     }

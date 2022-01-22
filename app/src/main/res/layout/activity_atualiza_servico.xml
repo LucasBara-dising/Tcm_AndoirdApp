@@ -80,19 +80,39 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextDate"
                 tools:ignore="MissingConstraints" />
 
+            <ImageView
+                android:id="@+id/imgCalender"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:padding="15dp"
+                android:layout_marginEnd="-15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
+                app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+                app:layout_constraintTop_toTopOf="@+id/editTextDate"
+                app:srcCompat="@drawable/calendario" />
+
+
+            <EditText
+                android:id="@+id/editTecUsda"
+                style="@style/editText"
+                android:background="@drawable/border_input"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/editDescserv"
+                tools:ignore="MissingConstraints" />
+
             <Spinner
-                android:id="@+id/dropdownTecUsada"
+                android:id="@+id/dropdownNivel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="56dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/border_input"
                 android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editDescserv" />
-
+                app:layout_constraintTop_toBottomOf="@+id/editTecUsda" />
 
             <Button
                 android:id="@+id/btnAtualiza"
@@ -150,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:text="@string/TxtplatServ"
-                app:layout_constraintBottom_toTopOf="@+id/dropdownTecUsada"
+                app:layout_constraintBottom_toTopOf="@+id/editTecUsda"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -162,21 +182,8 @@
                 android:text="@string/txtNivelConclusoa"
                 app:layout_constraintBottom_toTopOf="@+id/dropdownNivel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dropdownTecUsada" />
+                app:layout_constraintTop_toBottomOf="@+id/editTecUsda" />
 
-            <Spinner
-                android:id="@+id/dropdownNivel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="56dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/border_input"
-                android:spinnerMode="dropdown"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dropdownTecUsada" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

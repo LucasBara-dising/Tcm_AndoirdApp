@@ -8,9 +8,11 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,17 +32,30 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        editUserLogin = (EditText) findViewById(R.id.editUserLogin);
+        EditSenhaLogin = (EditText) findViewById(R.id.EditSenhaLogin);
+
         //define SharedPreferences
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("SalvaCodfunc", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         //adciona o user adm
-        //db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
+        int AdmCad =db.numeroDeUsers("admin@gmail.com","admin");
+        if(AdmCad==0){
+            db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
+        }
 
+        CheckBox cbMostraSenha = (CheckBox) findViewById(R.id.cbMostraSenha);
 
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        editUserLogin = (EditText) findViewById(R.id.editUserLogin);
-        EditSenhaLogin = (EditText) findViewById(R.id.EditSenhaLogin);
+        if(cbMostraSenha.isChecked()){
+            EditSenhaLogin.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
+
+        else if(!cbMostraSenha.isChecked()){
+            EditSenhaLogin.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+
 
             btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

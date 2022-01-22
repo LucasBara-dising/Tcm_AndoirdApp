@@ -53,9 +53,9 @@ public class ListaServ extends AppCompatActivity {
         if (ativa==0) {
             List<Servico> servicos = db.ListaTodosServicos();
 
+            listviewServ = (ListView) findViewById(R.id.listviewServ);
             arrayList = new ArrayList<String>();
             adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-            listviewServ = (ListView) findViewById(R.id.listviewServ);
             listviewServ.setAdapter(adpater);
 
             //loop para mostrar tudo
