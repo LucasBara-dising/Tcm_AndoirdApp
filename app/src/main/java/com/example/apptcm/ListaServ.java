@@ -41,58 +41,99 @@ public class ListaServ extends AppCompatActivity {
         Intent intent2 = getIntent();
         String nomeTec = intent2.getStringExtra("areaTrab");
 
-        //Palavra chave
+        //Palavra chave filtro
         Intent intent3 = getIntent();
         String nomeProj = intent3.getStringExtra("PlvChave");
 
-        //recebe os dados da outra tela
+        //Palavra chave home
         Intent intent4 = getIntent();
-        int ativa = intent4.getIntExtra("ativa",0);
+        String TituloProj = intent4.getStringExtra("TituloProj");
 
-        //----------------------Lista serviços-------------------------
-        if (ativa==0) {
-            List<Servico> servicos = db.ListaTodosServicos();
 
-            listviewServ = (ListView) findViewById(R.id.listviewServ);
-            arrayList = new ArrayList<String>();
-            adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-            listviewServ.setAdapter(adpater);
+        //recebe os dados da outra tela
+        Intent intent5 = getIntent();
+        String ativa = intent5.getStringExtra("ativa");
 
-            //loop para mostrar tudo
-            for (Servico c : servicos) {
-                //corpo do item list
-                arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
-                        "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
-                adpater.notifyDataSetChanged();
-            }
-        } else {
-            int NumeroUsers =db.NumDeProjetos(nomeTec,NivelConclusao,nomeProj);
-            Toast.makeText(ListaServ.this, "Num:  "+NumeroUsers, Toast.LENGTH_LONG).show();
-            if(NumeroUsers>0){
+        if(ativa==null){
+            ativa="Todos";
+        }
 
-                List<Servico> servicos = db.ListaTodosServicosComplvChave(nomeTec, NivelConclusao,nomeProj);
+        Toast.makeText(ListaServ.this, "plavra:" + NivelConclusao, Toast.LENGTH_LONG).show();
 
-                arrayList = new ArrayList<String>();
-                adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
-                listviewServ = (ListView) findViewById(R.id.listviewServ);
-                listviewServ.setAdapter(adpater);
+
+        //definição do arry que lista os projetos
+        arrayList = new ArrayList<String>();
+        adpater = new ArrayAdapter<String>(ListaServ.this, android.R.layout.simple_list_item_1, arrayList);
+        listviewServ = (ListView) findViewById(R.id.listviewServ);
+        listviewServ.setAdapter(adpater);
+
+        //----------------------Lista Projetos-------------------------
+        switch (ativa){
+            case "Todos":
+                //lista todos
+                List<Servico> TodosProj = db.ListaTodosServicos();
 
                 //loop para mostrar tudo
-                for (Servico c : servicos) {
+                for (Servico c : TodosProj) {
                     //corpo do item list
                     arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
                             "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
                     adpater.notifyDataSetChanged();
                 }
-            }
-            else{
-                ImageView imgVazio = (ImageView) findViewById(R.id.imgVazio);
-                imgVazio.setVisibility(View.VISIBLE);
+                break;
 
-                TextView txtVazio = (TextView) findViewById(R.id.txtVazio);
-                txtVazio.setVisibility(View.VISIBLE);
-            }
+            case "PalavraChave":
+                //mostra por pesquisa da edit text
+                List<Servico> PlvChaveProj = db.ListaProjetosPorPalavraChave(TituloProj);
+
+                //loop para mostrar tudo o corpo do item list
+                for (Servico c : PlvChaveProj) {
+                    arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                            "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                    adpater.notifyDataSetChanged();
+                }
+                break;
+
+            case "Filtro":
+                //mostra com filtro
+                int NumeroProj = db.NumDeProjetos(nomeTec, NivelConclusao, nomeProj);
+
+                if (NumeroProj > 0) {
+                    List<Servico> FiltroProj = db.ListaTodosServicosComFiltro(nomeTec, NivelConclusao, nomeProj);
+
+                    //loop para mostrar o corpo do item list
+                    for (Servico c : FiltroProj) {
+                        arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                                "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                        adpater.notifyDataSetChanged();
+                    }
+                }
+                //se com o filtro não tiver resultados mostra mensagem
+                else {
+                    ImageView imgVazio = (ImageView) findViewById(R.id.imgVazio);
+                    imgVazio.setVisibility(View.VISIBLE);
+
+                    TextView txtVazio = (TextView) findViewById(R.id.txtVazio);
+                    txtVazio.setVisibility(View.VISIBLE);
+                }
+
+                break;
+
+            default:
+                //lista todos
+                List<Servico> TodosProjs = db.ListaTodosServicos();
+
+                //loop para mostrar tudo
+                for (Servico c : TodosProjs) {
+                    //corpo do item list
+                    arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                            "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+                    adpater.notifyDataSetChanged();
+                }
+                break;
+
         }
+
 
         BtnAddServ= (ImageButton)findViewById(R.id.ImgBtnAddServ);
         BtnAddServ.setOnClickListener(new View.OnClickListener() {

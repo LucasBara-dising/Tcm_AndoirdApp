@@ -62,6 +62,7 @@
     <string name="descImgRelogio">Img De relogio</string>
 
     <string-array name="ItensDropdown">
+        <item> </item>
         <item>Em Andamento</item>
         <item>Terminado</item>
         <item>Não iniciado</item>

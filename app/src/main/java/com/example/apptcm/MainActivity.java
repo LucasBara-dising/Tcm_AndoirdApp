@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
         TxtEdtPesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String ativa="PalavraChave";
+                String TituloProj = TxtEdtPesquisa.getText().toString();
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("TituloProj",TituloProj);
+                ListServ.putExtra("ativa",ativa);
                 startActivity(ListServ);
             }
         });
@@ -75,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
         btnServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String ativa="Todos";
                 Intent ListServ = new Intent(getApplicationContext(), ListaServ.class);
+                ListServ.putExtra("ativa",ativa);
                 startActivity(ListServ);
             }
         });

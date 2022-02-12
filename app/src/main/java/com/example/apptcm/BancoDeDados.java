@@ -70,7 +70,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     }
 
-    //====================================== Serviços==========================
+    //====================================== Projeto==========================
     //Insert serv
     void addserv(Servico servico){
         SQLiteDatabase db=this.getWritableDatabase();
@@ -129,6 +129,32 @@ public class BancoDeDados extends SQLiteOpenHelper {
                 new String[]{String.valueOf(servico.getCodeServ()) });
     }
 
+    //selcet para home
+    Cursor mostraDadosHome(){
+//        String query= "SELECT * FROM " + Tabela_servico;
+//        SQLiteDatabase db=this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(query,null);
+//        return cursor;
+
+        List<Servico>  mostraDadosHome= new ArrayList<Servico>();
+        SQLiteDatabase db=this.getWritableDatabase();
+        String query="select * from " + Tabela_servico;
+        Cursor c= db.rawQuery(query,null);
+        c.moveToFirst();
+        for (int i =0; i<c.getCount();i++)
+        {
+            Servico proj= new Servico();
+            proj.setCodeServ(Integer.parseInt(c.getString(0)));
+            proj.setNomeEmpresa(c.getString(1));
+            proj.setTituloServ(c.getString(2));
+            proj.setAreaServ(c.getString(5));
+            mostraDadosHome.add(proj);
+            c.moveToNext();
+        }
+        return c;
+    }
+
+
     //lista Todos
     public List<Servico> ListaTodosServicos(){
         List<Servico>  ListaServicos= new ArrayList<Servico>();
@@ -157,13 +183,13 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return  ListaServicos;
     }
 
-    //lista Todos por palavra
-    public List<Servico> ListaTodosServicosComFiltro(String nomeTec,String NivelConclusao,String nomeProj){
+    //lista Todos por palavra chave
+    public List<Servico> ListaProjetosPorPalavraChave(String TituloProj){
         List<Servico>  ListaServicos= new ArrayList<Servico>();
 
         SQLiteDatabase db=this.getWritableDatabase();
 
-        Cursor c =db.rawQuery("SELECT * FROM " + Tabela_servico + " Where " + Coluna_AreaServ + "=? OR "+ Coluna_NivelConclusao+ "=? OR " + Coluna_TituloServ + " like ?", new String[]{nomeTec, NivelConclusao, "%" + nomeProj + "%" });
+        Cursor c =db.rawQuery("SELECT * FROM " + Tabela_servico + " Where "+ Coluna_NomeEmpresa + " =? like? OR " + Coluna_TituloServ + " like ?", new String[]{"%" + TituloProj + "%", "%" + TituloProj + "%" });
 
         if(c.moveToFirst()){
             do{
@@ -185,7 +211,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
 
 //    //lista Todos projetos com filtro
-    public List<Servico> ListaTodosServicosComplvChave(String nomeTec,String NivelConclusao,String nomeProj){
+    public List<Servico> ListaTodosServicosComFiltro(String nomeTec,String NivelConclusao,String nomeProj){
         List<Servico>  ListaServicos= new ArrayList<Servico>();
 
         SQLiteDatabase db=this.getWritableDatabase();

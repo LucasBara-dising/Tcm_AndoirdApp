@@ -86,9 +86,9 @@
                 android:layout_height="70dp"
                 android:padding="15dp"
                 android:layout_marginEnd="-15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
-                app:layout_constraintEnd_toEndOf="@+id/editTextDate"
-                app:layout_constraintTop_toTopOf="@+id/editTextDate"
+                app:layout_constraintBottom_toBottomOf="@+id/editDescserv"
+                app:layout_constraintEnd_toEndOf="@+id/editDescserv"
+                app:layout_constraintTop_toTopOf="@+id/editDescserv"
                 app:srcCompat="@drawable/calendario" />
 
 

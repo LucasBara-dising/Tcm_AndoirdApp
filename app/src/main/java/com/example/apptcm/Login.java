@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,11 +51,13 @@ public class Login extends AppCompatActivity {
         CheckBox cbMostraSenha = (CheckBox) findViewById(R.id.cbMostraSenha);
 
         if(cbMostraSenha.isChecked()){
-            EditSenhaLogin.setInputType(InputType.TYPE_CLASS_TEXT);
+            //mostra senha
+            EditSenhaLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         }
 
         else if(!cbMostraSenha.isChecked()){
-            EditSenhaLogin.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            //esconde Password
+            EditSenhaLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
 
 
