@@ -48,18 +48,6 @@ public class Login extends AppCompatActivity {
             db.addFunc(new Funcionario("admin@gmail.com","admin","Luiz Carlos","Lider"));
         }
 
-        CheckBox cbMostraSenha = (CheckBox) findViewById(R.id.cbMostraSenha);
-
-        if(cbMostraSenha.isChecked()){
-            //mostra senha
-            EditSenhaLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        }
-
-        else if(!cbMostraSenha.isChecked()){
-            //esconde Password
-            EditSenhaLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-
 
             btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

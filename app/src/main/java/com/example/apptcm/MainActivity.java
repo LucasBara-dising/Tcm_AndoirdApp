@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnServ = (Button) findViewById(R.id.btnServ);
+        ImageView btnServ = (ImageView) findViewById(R.id.btnServ);
         btnServ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnFunc = (Button) findViewById(R.id.btnFunc);
+        ImageView btnFunc = (ImageView) findViewById(R.id.btnFunc);
         btnFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

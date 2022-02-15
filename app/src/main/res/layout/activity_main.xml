@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/myRectangleView2"
@@ -88,32 +88,58 @@
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/myRectangleView2" />
 
-    <Button
-        android:id="@+id/btnServ"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/borda_aredondada"
-        android:foreground="@drawable/add_serv"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/Azul"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFunc" />
 
-            <Button
-                android:id="@+id/btnFunc"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/borda_aredondada"
-                android:foreground="@drawable/novo_func"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/Azul"
+            <ImageView
+                android:id="@+id/btnServ"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/home_menu_icon"
+                android:padding="25dp"
+                android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView46" />
+                app:layout_constraintTop_toBottomOf="@+id/txtView"
+                app:srcCompat="@drawable/project_management" />
 
+            <TextView
+                android:id="@+id/txtserv"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_menu"
+                android:text="@string/TxtServ"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnServ" />
+
+            <ImageView
+                android:id="@+id/btnFunc"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/home_menu_icon"
+                android:padding="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtView46"
+                app:srcCompat="@drawable/conta" />
+
+            <TextView
+                android:id="@+id/txtView"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_menu"
+                android:text="@string/TxtConta"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFunc" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

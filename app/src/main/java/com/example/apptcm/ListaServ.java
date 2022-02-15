@@ -58,7 +58,7 @@ public class ListaServ extends AppCompatActivity {
             ativa="Todos";
         }
 
-        Toast.makeText(ListaServ.this, "plavra:" + NivelConclusao, Toast.LENGTH_LONG).show();
+        //Toast.makeText(ListaServ.this, "plavra:" + NivelConclusao, Toast.LENGTH_LONG).show();
 
 
         //definição do arry que lista os projetos
@@ -71,15 +71,7 @@ public class ListaServ extends AppCompatActivity {
         switch (ativa){
             case "Todos":
                 //lista todos
-                List<Servico> TodosProj = db.ListaTodosServicos();
-
-                //loop para mostrar tudo
-                for (Servico c : TodosProj) {
-                    //corpo do item list
-                    arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
-                            "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
-                    adpater.notifyDataSetChanged();
-                }
+                ListaTodosProjetos();
                 break;
 
             case "PalavraChave":
@@ -121,15 +113,7 @@ public class ListaServ extends AppCompatActivity {
 
             default:
                 //lista todos
-                List<Servico> TodosProjs = db.ListaTodosServicos();
-
-                //loop para mostrar tudo
-                for (Servico c : TodosProjs) {
-                    //corpo do item list
-                    arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
-                            "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
-                    adpater.notifyDataSetChanged();
-                }
+                ListaTodosProjetos();
                 break;
 
         }
@@ -183,6 +167,18 @@ public class ListaServ extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
+    public void ListaTodosProjetos() {
+        List<Servico> TodosProjs = db.ListaTodosServicos();
+
+        //loop para mostrar tudo
+        for (Servico c : TodosProjs) {
+            //corpo do item list
+            arrayList.add(c.getCodeServ() + "-" + "Empresa: " + c.getNomeEmpresa() + "\n" +
+                    "Titulo: " + c.getTituloServ() + "\n" + "Prazo: " + c.getPrazo() + "\n");
+            adpater.notifyDataSetChanged();
+        }
+    }
 }
